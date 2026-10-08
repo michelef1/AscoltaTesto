@@ -9,8 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="AscoltaTesto">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="description" content="AscoltaTesto — il tuo lettore vocale personale. Incolla un testo, scegli la voce e ascoltalo.">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='42' fill='%232563eb'/><path d='M96 40v70a26 26 0 1 1-8-18V56l48-12v58a26 26 0 1 1-8-18V40z' fill='white'/></svg>">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="icon" href="./icons/icon-192.png">
 <title>AscoltaTesto</title>
 <style>
 /* ============================================================
@@ -179,6 +180,128 @@
     --theme-color:#0b0b0d;
   }
 }
+
+/* ---------- Modo chiaro/scuro forzato dal menu ---------- */
+body[data-mode="light"][data-theme="blunotte"]{
+  --bg1:#eef4ff;--bg2:#f8fbff;--bg3:#eef2ff;
+  --card:#ffffff;--text:#172033;--muted:#68748a;
+  --primary:#2563eb;--primary2:#4f46e5;
+  --line:#dce5f5;--soft:#e8efff;
+  --danger:#dc2626;--ok:#16a34a;
+  --hero1:#172554;--hero2:#2563eb;--hero3:#4f46e5;
+  --shadow:0 12px 35px rgba(30,55,100,.12);
+  --shadow-sm:0 4px 14px rgba(30,55,100,.08);
+  --theme-color:#172554;}
+body[data-mode="dark"][data-theme="blunotte"]{
+    --bg1:#0b1220;--bg2:#0f172a;--bg3:#0b1220;
+    --card:#111a2e;--text:#e6edf8;--muted:#93a3bd;
+    --primary:#3b82f6;--primary2:#6366f1;
+    --line:#1e2a44;--soft:#16233d;
+    --danger:#f87171;--ok:#4ade80;
+    --hero1:#0b1533;--hero2:#1e3a8a;--hero3:#4338ca;
+    --shadow:0 12px 35px rgba(0,0,0,.4);
+    --shadow-sm:0 4px 14px rgba(0,0,0,.3);
+    --theme-color:#0b1220;}
+body[data-mode="light"][data-theme="tramonto"]{
+  --bg1:#fff1e6;--bg2:#fff7f1;--bg3:#ffe9e0;
+  --card:#ffffff;--text:#2b1a17;--muted:#8a6a63;
+  --primary:#f97316;--primary2:#e11d48;
+  --line:#f6d8c7;--soft:#ffe6d5;
+  --danger:#dc2626;--ok:#16a34a;
+  --hero1:#7c2d12;--hero2:#ea580c;--hero3:#e11d48;
+  --shadow:0 12px 35px rgba(120,40,20,.14);
+  --shadow-sm:0 4px 14px rgba(120,40,20,.10);
+  --theme-color:#7c2d12;}
+body[data-mode="dark"][data-theme="tramonto"]{
+    --bg1:#1a0f0b;--bg2:#241511;--bg3:#1a0f0b;
+    --card:#241511;--text:#ffece1;--muted:#c69a8b;
+    --primary:#fb923c;--primary2:#f43f5e;
+    --line:#3b1f18;--soft:#2f1a14;
+    --danger:#f87171;--ok:#4ade80;
+    --hero1:#4a1a0a;--hero2:#9a3412;--hero3:#9f1239;
+    --shadow:0 12px 35px rgba(0,0,0,.45);
+    --shadow-sm:0 4px 14px rgba(0,0,0,.35);
+    --theme-color:#1a0f0b;}
+body[data-mode="light"][data-theme="aurora"]{
+  --bg1:#ecfeff;--bg2:#f5f3ff;--bg3:#ecfdf5;
+  --card:#ffffff;--text:#0f172a;--muted:#5b6b82;
+  --primary:#06b6d4;--primary2:#8b5cf6;
+  --line:#d6e6f0;--soft:#e0f2fe;
+  --danger:#dc2626;--ok:#16a34a;
+  --hero1:#0f766e;--hero2:#06b6d4;--hero3:#8b5cf6;
+  --shadow:0 12px 35px rgba(20,80,120,.14);
+  --shadow-sm:0 4px 14px rgba(20,80,120,.10);
+  --theme-color:#0f766e;}
+body[data-mode="dark"][data-theme="aurora"]{
+    --bg1:#071620;--bg2:#0c1b2a;--bg3:#08131f;
+    --card:#0c1b2a;--text:#e0f2fe;--muted:#8ba7bd;
+    --primary:#22d3ee;--primary2:#a78bfa;
+    --line:#153045;--soft:#0f2a3d;
+    --danger:#f87171;--ok:#4ade80;
+    --hero1:#083344;--hero2:#0e7490;--hero3:#5b21b6;
+    --shadow:0 12px 35px rgba(0,0,0,.45);
+    --shadow-sm:0 4px 14px rgba(0,0,0,.35);
+    --theme-color:#071620;}
+body[data-mode="light"][data-theme="foresta"]{
+  --bg1:#ecfdf5;--bg2:#f0fdf4;--bg3:#e6f4ea;
+  --card:#ffffff;--text:#0f1f17;--muted:#5b7266;
+  --primary:#059669;--primary2:#0d9488;
+  --line:#cfe9da;--soft:#d9f2e3;
+  --danger:#dc2626;--ok:#16a34a;
+  --hero1:#064e3b;--hero2:#059669;--hero3:#0d9488;
+  --shadow:0 12px 35px rgba(20,80,50,.14);
+  --shadow-sm:0 4px 14px rgba(20,80,50,.10);
+  --theme-color:#064e3b;}
+body[data-mode="dark"][data-theme="foresta"]{
+    --bg1:#08140e;--bg2:#0c1c14;--bg3:#08140e;
+    --card:#0c1c14;--text:#dcfce7;--muted:#88ab98;
+    --primary:#34d399;--primary2:#2dd4bf;
+    --line:#163226;--soft:#11281d;
+    --danger:#f87171;--ok:#4ade80;
+    --hero1:#022c22;--hero2:#047857;--hero3:#0f766e;
+    --shadow:0 12px 35px rgba(0,0,0,.45);
+    --shadow-sm:0 4px 14px rgba(0,0,0,.35);
+    --theme-color:#08140e;}
+body[data-mode="light"][data-theme="rosa"]{
+  --bg1:#fff1f7;--bg2:#fdf2f8;--bg3:#ffe4ef;
+  --card:#ffffff;--text:#2b1420;--muted:#8a5b73;
+  --primary:#ec4899;--primary2:#a855f7;
+  --line:#f7d0e2;--soft:#fce7f3;
+  --danger:#dc2626;--ok:#16a34a;
+  --hero1:#831843;--hero2:#ec4899;--hero3:#a855f7;
+  --shadow:0 12px 35px rgba(130,30,90,.14);
+  --shadow-sm:0 4px 14px rgba(130,30,90,.10);
+  --theme-color:#831843;}
+body[data-mode="dark"][data-theme="rosa"]{
+    --bg1:#1a0b14;--bg2:#241019;--bg3:#1a0b14;
+    --card:#241019;--text:#fce7f3;--muted:#c692aa;
+    --primary:#f472b6;--primary2:#c084fc;
+    --line:#3b1a2a;--soft:#2f1420;
+    --danger:#f87171;--ok:#4ade80;
+    --hero1:#4c0519;--hero2:#9d174d;--hero3:#6b21a8;
+    --shadow:0 12px 35px rgba(0,0,0,.45);
+    --shadow-sm:0 4px 14px rgba(0,0,0,.35);
+    --theme-color:#1a0b14;}
+body[data-mode="light"][data-theme="mono"]{
+  --bg1:#f4f4f5;--bg2:#fafafa;--bg3:#f1f1f3;
+  --card:#ffffff;--text:#18181b;--muted:#71717a;
+  --primary:#3f3f46;--primary2:#52525b;
+  --line:#e4e4e7;--soft:#ececef;
+  --danger:#dc2626;--ok:#16a34a;
+  --hero1:#18181b;--hero2:#3f3f46;--hero3:#52525b;
+  --shadow:0 12px 35px rgba(20,20,25,.12);
+  --shadow-sm:0 4px 14px rgba(20,20,25,.08);
+  --theme-color:#18181b;}
+body[data-mode="dark"][data-theme="mono"]{
+    --bg1:#0b0b0d;--bg2:#131316;--bg3:#0b0b0d;
+    --card:#131316;--text:#f4f4f5;--muted:#9a9aa3;
+    --primary:#a1a1aa;--primary2:#d4d4d8;
+    --line:#26262b;--soft:#1c1c20;
+    --danger:#f87171;--ok:#4ade80;
+    --hero1:#09090b;--hero2:#27272a;--hero3:#3f3f46;
+    --shadow:0 12px 35px rgba(0,0,0,.5);
+    --shadow-sm:0 4px 14px rgba(0,0,0,.4);
+    --theme-color:#0b0b0d;}
 
 /* ---------- Base ---------- */
 *{box-sizing:border-box}
@@ -470,6 +593,42 @@ select{
 .credits .app-version{color:var(--muted);font-size:13px}
 .credits .app-author{font-weight:700;margin-top:4px}
 .credits .app-year{color:var(--muted);font-size:12px}
+/* ============================================================
+   v1.1 — menu, pannelli dal basso, dialoghi, notifiche
+   ============================================================ */
+.menu{position:fixed;z-index:30;min-width:230px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transform:scale(.92) translateY(-8px);transform-origin:top right;transition:opacity .16s,transform .22s cubic-bezier(.2,.9,.3,1.2),visibility 0s .22s}
+.menu.open{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.menu button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px;border-radius:12px;font-size:15.5px;font-weight:600;color:var(--text)}
+.menu button:hover,.menu button:active{background:var(--soft)}
+.menu hr{border:0;border-top:1px solid var(--line);margin:6px 8px}
+.ov{position:fixed;inset:0;z-index:40;background:rgba(11,22,56,.55);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}
+.ov.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;bottom:0;z-index:41;width:min(640px,100%);max-height:88vh;display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-bottom:0;border-radius:26px 26px 0 0;box-shadow:0 -14px 50px rgba(0,0,0,.35);transform:translate(-50%,105%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s}
+.sheet.open{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
+.grab{width:44px;height:5px;border-radius:5px;background:var(--muted);opacity:.45;margin:10px auto 0;flex-shrink:0;touch-action:none}
+.sh-h{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;font-size:19px;flex-shrink:0;touch-action:none}
+.x{width:38px;height:38px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:15px;color:var(--text)}
+.sh-b{overflow-y:auto;padding:4px 18px calc(env(safe-area-inset-bottom,0px) + 24px)}
+.dlg{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(11,22,56,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .2s}
+.dlg.on{opacity:1;pointer-events:auto}
+.dbox{width:100%;max-width:350px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:26px 22px 20px;box-shadow:0 25px 70px rgba(0,0,0,.4);transform:scale(.9);transition:transform .25s cubic-bezier(.2,.9,.3,1.2)}
+.dlg.on .dbox{transform:none}
+.dic{font-size:42px;line-height:1}
+.dbox h3{margin:10px 0 6px;font-size:19px}
+.dbox p{margin:0 0 20px;color:var(--muted);line-height:1.5}
+.dbtn{display:flex;flex-direction:column;gap:8px}
+.dbtn button{width:100%;justify-content:center}
+.dbtn .dng{background:var(--danger)!important;color:#fff!important}
+.opt{display:flex;justify-content:space-between;width:100%;padding:15px 16px;margin-bottom:8px;border-radius:14px;background:var(--card);border:2px solid var(--line);font-weight:600;color:var(--text)}
+.opt.sel{border-color:var(--primary)}
+.opt.sel::after{content:'✓';color:var(--primary)}
+.linkbtn{font-size:12.5px;color:var(--muted);padding:6px 8px;border-radius:10px}
+.linkbtn:hover{background:var(--soft)}
+.readerText p{margin:0 0 1em}
+.readerText span.rd{opacity:.5}
+.toast{display:flex;align-items:center;gap:10px;border-radius:999px;padding:12px 20px;z-index:70;transition:opacity .25s,transform .35s cubic-bezier(.2,.9,.3,1.2)}
+@media (prefers-reduced-motion:reduce){.menu,.sheet,.dbox,.toast,.ov,.dlg{transition:none!important}}
+
 </style>
 </head>
 <body data-theme="blunotte">
@@ -486,10 +645,16 @@ select{
         <small>Il tuo lettore personale</small>
       </div>
     </div>
-    <button class="iconbtn" onclick="openSettings()" aria-label="Impostazioni">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-    </button>
+    <button class="iconbtn" id="menuBtn" aria-label="Menu" aria-haspopup="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button>
   </header>
+  <div class="menu" id="menu" role="menu">
+    <button data-a="install"><span>📲</span>Installa app</button>
+    <button data-a="guida"><span>📖</span>Guida</button>
+    <button data-a="set"><span>⚙️</span>Impostazioni</button>
+    <button data-a="info"><span>ℹ️</span>Info e crediti</button>
+    <hr>
+    <button data-a="mode" id="modeItem"></button>
+  </div>
 
   <!-- NAV DESKTOP -->
   <nav>
@@ -626,7 +791,8 @@ select{
         <input id="seek" class="slider" type="range" min="0" max="100" value="0" oninput="seekPercent(this.value)" aria-label="Posizione" style="margin-top:14px">
         <div class="row spread" style="margin-top:8px">
           <span id="voiceLabel" class="muted" style="font-size:12.5px">Voce: automatica</span>
-          <span id="speedLabel" class="muted" style="font-size:12.5px">1,0×</span>
+          <button class="linkbtn" id="timerBtn" onclick="openSheet('tmr')">⏱️ Timer</button>
+          <button class="linkbtn" id="speedLabel" onclick="cycleSpeed()" aria-label="Cambia velocità">1,0×</button>
         </div>
       </div>
     </div>
@@ -649,31 +815,9 @@ select{
   </button>
 </div>
 
-<!-- ============================================================
-     MODALE IMPOSTAZIONI (con tab Impostazioni / Guida)
-     ============================================================ -->
-<div id="settingsModal" class="modal">
-  <div class="modalbox">
-    <button class="close" onclick="closeSettings()" aria-label="Chiudi">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-
-    <!-- TAB BAR -->
-    <div class="tabbar" role="tablist">
-      <button id="tabBtnSettings" class="active" onclick="switchTab('settings')" role="tab" aria-selected="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        Impostazioni
-      </button>
-      <button id="tabBtnGuide" onclick="switchTab('guide')" role="tab" aria-selected="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Guida
-      </button>
-    </div>
-
-    <!-- TAB: IMPOSTAZIONI -->
-    <div id="tabSettings" class="tabpane active">
-      <h2 style="margin-top:0">Impostazioni</h2>
-      <p class="muted" style="margin-top:0">Personalizza la lettura e l’aspetto.</p>
+<div class="ov" id="ov"></div>
+<section class="sheet" id="sh-set" role="dialog" aria-modal="true" aria-label="Impostazioni"><div class="grab"></div><div class="sh-h"><b>Impostazioni</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b ">
+      
 
       <div class="settingsGrid">
         <div class="setting">
@@ -695,86 +839,129 @@ select{
         </div>
       </div>
 
-      <h3 style="margin-top:22px;margin-bottom:10px">Tema</h3>
+      <div class="setting" style="margin-top:12px"><label><input type="checkbox" id="wakeChk" onchange="saveSettings()"> Tieni lo schermo acceso durante l'ascolto</label><button class="secondary" style="margin-top:8px" onclick="tryVoice()">Prova voce</button></div>
+<h3 style="margin-top:22px;margin-bottom:10px">Tema</h3>
       <div class="themes" id="themesGrid"></div>
-    </div>
+    </div></section>
+<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>Dopo una pausa, la lettura riparte dall'inizio della frase corrente.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni puoi provare ogni voce.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
+<section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.1</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+<section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
+<div class="dlg" id="dlg" role="alertdialog" aria-modal="true" aria-labelledby="dtt"><div class="dbox"><div class="dic" id="dic"></div><h3 id="dtt"></h3><p id="dmg"></p><div class="dbtn"><button class="primary" id="dok">OK</button><button class="secondary" id="dalt" style="display:none"></button><button class="secondary" id="dcn">Annulla</button></div></div></div>
 
-    <!-- TAB: GUIDA -->
-    <div id="tabGuide" class="tabpane">
-      <div class="guide">
-        <h2 style="margin-top:0">Come funziona</h2>
-        <p>AscoltaTesto usa le voci vocali disponibili nel browser e nel dispositivo. Puoi incollare qualsiasi testo, scegliere la voce, la velocità e il tono, e ascoltarlo.</p>
-
-        <h3>📌 Salvataggio automatico</h3>
-        <p>La posizione di lettura viene salvata automaticamente sul dispositivo mentre ascolti. Puoi chiudere l’app e riprendere esattamente da dove eri rimasto.</p>
-
-        <h3>🗂️ Archivio testi</h3>
-        <p>Tutti i testi vengono salvati solo localmente sul tuo dispositivo. Puoi esportarli in formato JSON come backup e reimportarli in un secondo momento.</p>
-
-        <h3>🎙️ Voci</h3>
-        <p>Le voci disponibili dipendono dal sistema operativo e dal browser. Su Android e iOS la scelta può variare; se non trovi una voce italiana, controlla le impostazioni di sistema del tuo dispositivo.</p>
-
-        <h3>🎨 Temi</h3>
-        <p>Puoi scegliere tra diversi temi con gradienti e palette di colori. Ogni tema si adatta automaticamente alla modalità chiara e scura del sistema.</p>
-
-        <h3>📖 Tasto Indietro</h3>
-        <p>Su Android, il tasto Indietro ti riporta sempre alla Home. Se sei già in Home, chiude l’app normalmente.</p>
-
-        <div class="credits">
-          <div class="app-author">App creata da Miki By DeepSeek</div>
-          <div class="app-version">Versione 2.0.0</div>
-          <div class="app-year">© <span id="yearNow"></span> AscoltaTesto</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="toast" class="toast"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
-/* ============================================================
-   AscoltaTesto v2.0.0
-   App creata da Miki By DeepSeek
-   ============================================================ */
-const APP_VERSION = '2.0.0';
-const KEY = 'ascoltatesto_v2';
+/* AscoltaTesto v1.1 */
+const APP_VERSION='1.1';
+const KEY='ascoltatesto_v2';
+const THEMES=[
+{id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
+{id:'tramonto',label:'Tramonto',sub:'Caldo',colors:['#7c2d12','#ea580c','#e11d48']},
+{id:'aurora',label:'Aurora',sub:'Fresco',colors:['#0f766e','#06b6d4','#8b5cf6']},
+{id:'foresta',label:'Foresta',sub:'Naturale',colors:['#064e3b','#059669','#0d9488']},
+{id:'rosa',label:'Rosa',sub:'Morbido',colors:['#831843','#ec4899','#a855f7']},
+{id:'mono',label:'Mono',sub:'Elegante',colors:['#18181b','#3f3f46','#52525b']}];
+const DEF={voice:'',rate:1,pitch:1,font:16,theme:'blunotte',mode:'auto',wake:true};
+const IC={
+play:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
+trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>'};
+const $=id=>document.getElementById(id);
+const fmt=n=>Number(n).toFixed(1).replace('.',',');
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 
-const THEMES = [
-  {id:'auto',    label:'Auto',     sub:'Sistema',   colors:['#2563eb','#e11d48','#8b5cf6']},
-  {id:'blunotte',label:'Blu Notte',sub:'Default',   colors:['#172554','#2563eb','#4f46e5']},
-  {id:'tramonto',label:'Tramonto', sub:'Caldo',     colors:['#7c2d12','#ea580c','#e11d48']},
-  {id:'aurora',  label:'Aurora',   sub:'Fresco',    colors:['#0f766e','#06b6d4','#8b5cf6']},
-  {id:'foresta', label:'Foresta',  sub:'Naturale',  colors:['#064e3b','#059669','#0d9488']},
-  {id:'rosa',    label:'Rosa',     sub:'Morbido',   colors:['#831843','#ec4899','#a855f7']},
-  {id:'mono',    label:'Mono',     sub:'Elegante',  colors:['#18181b','#3f3f46','#52525b']}
-];
+let cur=null,sn=[],idx=0,playing=false,done=false,tok=0,lock=null,voices=[],page='home',curSheet=null,dlgRes=null,dp=null,st;
 
-let data = JSON.parse(localStorage.getItem(KEY) || 'null') || {
-  version: APP_VERSION,
-  texts: [],
-  lastId: null,
-  settings: { voice:'', rate:1, pitch:1, font:16, theme:'auto' }
+/* ---------- Dati ---------- */
+function load(){
+  let d=null;try{d=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  d=d||{};d.texts=Array.isArray(d.texts)?d.texts:[];
+  d.settings=Object.assign({},DEF,d.settings||{});
+  if(!THEMES.some(t=>t.id===d.settings.theme))d.settings.theme='blunotte';
+  d.texts.forEach(t=>{delete t.parts;t.id=String(t.id);t.pos=t.pos||0});
+  d.version=APP_VERSION;return d;
+}
+let data=load();
+const S=()=>data.settings;
+function persist(){clearTimeout(st);try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){toast('Spazio esaurito: elimina qualche testo','err')}}
+function persistSoon(){clearTimeout(st);st=setTimeout(persist,700)}
+function toast(m,k){
+  const e=$('toast');
+  e.innerHTML='<span>'+({ok:'✅',err:'⚠️'}[k]||'ℹ️')+'</span><span></span>';
+  e.lastChild.textContent=m;e.classList.add('show');
+  clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2600);
+}
+
+/* ---------- Dialoghi ---------- */
+function ask(o){
+  $('dic').textContent=o.icon||'❔';$('dtt').textContent=o.title||'';$('dmg').textContent=o.msg||'';
+  const ok=$('dok');ok.textContent=o.ok||'OK';ok.classList.toggle('dng',!!o.danger);
+  $('dalt').style.display=o.alt?'':'none';$('dalt').textContent=o.alt||'';
+  $('dcn').style.display=o.cancel===false?'none':'';
+  $('dlg').classList.add('on');ok.focus();
+  return new Promise(r=>{dlgRes=r});
+}
+function dlgDone(v){$('dlg').classList.remove('on');if(dlgRes){const r=dlgRes;dlgRes=null;r(v)}}
+$('dok').onclick=()=>dlgDone('ok');
+$('dalt').onclick=()=>dlgDone('alt');
+$('dcn').onclick=()=>dlgDone(false);
+$('dlg').onclick=e=>{if(e.target.id==='dlg')dlgDone(false)};
+
+/* ---------- Menu e pannelli ---------- */
+const mn=$('menu'),ov=$('ov');
+function closeMenu(){mn.classList.remove('open')}
+$('menuBtn').onclick=e=>{
+  e.stopPropagation();
+  if(mn.classList.contains('open')){closeMenu();return}
+  const r=$('menuBtn').getBoundingClientRect();
+  mn.style.top=(r.bottom+8)+'px';mn.style.right=Math.max(10,innerWidth-r.right)+'px';
+  mn.classList.add('open');
 };
-// Migrazione minima
-if(!data.version) data.version = APP_VERSION;
-if(!data.settings.theme) data.settings.theme = 'auto';
-
-let current=null, utterance=null, speaking=false, sentenceStarts=[], currentSentence=0, voices=[];
-let currentPageId = 'home';
-
-const $ = id => document.getElementById(id);
-
-/* ---------- Persistenza ---------- */
-function persist(){
-  try{ localStorage.setItem(KEY, JSON.stringify(data)); }
-  catch(e){ toast('Spazio esaurito: rimuovi qualche testo'); }
+document.addEventListener('click',closeMenu);
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e});
+mn.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const a=b.dataset.a;
+  if(a==='install')install();
+  else if(a==='mode')toggleMode();
+  else openSheet(a);
+});
+function install(){
+  if(dp){dp.prompt();dp=null;return}
+  ask({icon:'📲',title:'Installa AscoltaTesto',msg:'Apri il menu del browser e scegli "Installa app" oppure "Aggiungi a schermata Home".',ok:'Ho capito',cancel:false});
 }
-function toast(t){
-  const e=$('toast'); e.textContent=t; e.classList.add('show');
-  clearTimeout(e._t); e._t=setTimeout(()=>e.classList.remove('show'), 1900);
+function openSettings(){openSheet('set')}
+function openSheet(n){
+  closeMenu();closeSheet();
+  curSheet=$('sh-'+n);if(!curSheet)return;
+  if(n==='set'){loadVoices();syncUI();renderThemes()}
+  if(n==='tmr')renderTmr();
+  ov.classList.add('on');curSheet.classList.add('open');
 }
+function closeSheet(){
+  if(!curSheet)return;
+  curSheet.classList.remove('open');curSheet.style.transform='';
+  ov.classList.remove('on');curSheet=null;
+}
+ov.onclick=closeSheet;
+document.querySelectorAll('.sheet .x').forEach(b=>b.onclick=closeSheet);
+function closeTop(){
+  if($('dlg').classList.contains('on')){dlgDone(false);return true}
+  if(curSheet){closeSheet();return true}
+  if(mn.classList.contains('open')){closeMenu();return true}
+  return false;
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTop()});
+document.querySelectorAll('.sheet').forEach(sh=>{
+  let y0=null,dy=0;
+  sh.querySelectorAll('.grab,.sh-h').forEach(h=>{
+    h.addEventListener('touchstart',e=>{y0=e.touches[0].clientY;dy=0;sh.style.transition='none'},{passive:true});
+    h.addEventListener('touchmove',e=>{if(y0===null)return;dy=Math.max(0,e.touches[0].clientY-y0);sh.style.transform='translate(-50%,'+dy+'px)'},{passive:true});
+    h.addEventListener('touchend',()=>{if(y0===null)return;sh.style.transition='';y0=null;if(dy>90)closeSheet();else sh.style.transform=''});
+  });
+});
 
 /* ---------- Navigazione ---------- */
 function showPage(id){
@@ -782,447 +969,282 @@ function showPage(id){
   $(id).classList.add('active');
   document.querySelectorAll('nav button, .bottomnav button').forEach(x=>x.classList.remove('active'));
   const n={home:['navHome','bnHome'],texts:['navTexts','bnTexts'],reader:['navReader','bnReader']}[id];
-  if(n) n.forEach(x=>$(x)?.classList.add('active'));
-  if(id==='texts') renderList();
-  if(id==='home') renderContinue();
-  currentPageId = id;
-  window.scrollTo({top:0, behavior:'smooth'});
+  if(n)n.forEach(x=>$(x)&&$(x).classList.add('active'));
+  if(id==='texts')renderList();
+  if(id==='home')renderContinue();
+  page=id;window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function goHome(){
-  // Se modale aperto, chiudilo prima
-  if($('settingsModal').classList.contains('show')){ closeSettings(); return; }
-  stopSpeech();
-  showPage('home');
-}
-
-/* ---------- Tasto Indietro Android ---------- */
-function setupBackButton(){
-  // Inserisce uno stato "sentinella"
-  history.pushState({page:'home'}, '', location.href);
-  window.addEventListener('popstate', () => {
-    // 1) Modale aperto? Chiudilo
-    if($('settingsModal').classList.contains('show')){
-      closeSettings();
-      history.pushState({page:currentPageId}, '', location.href);
-      return;
-    }
-    // 2) Non siamo in Home? Torna in Home
-    if(currentPageId !== 'home'){
-      showPage('home');
-      history.pushState({page:'home'}, '', location.href);
-      return;
-    }
-    // 3) Siamo in Home → lascia uscire
-  });
-}
+function goHome(){if(closeTop())return;pause();showPage('home')}
+history.pushState({p:1},'',location.href);
+addEventListener('popstate',()=>{
+  if(closeTop()){history.pushState({p:1},'',location.href);return}
+  if(page!=='home'){showPage('home');history.pushState({p:1},'',location.href)}
+});
 
 /* ---------- Editor ---------- */
 function updateMeta(){
-  const t = $('textInput').value;
-  const words = t.trim() ? t.trim().split(/\s+/).length : 0;
-  const mins = Math.ceil(words/180);
-  $('metaInfo').textContent = `${words} parole · ${t.length} caratteri · ~${mins} min`;
+  const t=$('textInput').value,w=t.trim()?t.trim().split(/\s+/).length:0;
+  $('metaInfo').textContent=w+' parole · '+t.length+' caratteri · ~'+Math.ceil(w/180)+' min';
 }
-
-function newText(){
-  stopSpeech(); current=null;
-  $('editorView').style.display='block';
-  $('readingView').style.display='none';
-  $('titleInput').value=''; $('textInput').value='';
-  updateMeta(); showPage('reader');
-  setTimeout(()=>$('titleInput').focus(), 200);
+function resetReader(){
+  cur=null;sn=[];
+  $('editorView').style.display='block';$('readingView').style.display='none';
+  $('titleInput').value='';$('textInput').value='';updateMeta();
 }
-
+function newText(){pause();resetReader();showPage('reader');setTimeout(()=>$('titleInput').focus(),200)}
 function saveAndRead(){
-  const text = $('textInput').value.trim();
-  if(!text){ toast('Inserisci prima un testo'); return; }
-  const title = $('titleInput').value.trim() || 'Testo senza titolo';
-  if(current && current.id){
-    current.title = title; current.text = text; current.updated = Date.now();
-  } else {
-    current = {id: Date.now().toString(), title, text, pos:0, updated: Date.now()};
-    data.texts.unshift(current);
-  }
-  data.lastId = current.id;
-  persist(); openReading(); toast('Testo salvato');
+  const text=$('textInput').value.trim();
+  if(!text){toast('Inserisci prima un testo','err');return}
+  const title=$('titleInput').value.trim()||'Testo senza titolo';
+  if(cur){if(cur.text!==text){cur.text=text;cur.pos=0}cur.title=title;cur.updated=Date.now()}
+  else{cur={id:Date.now().toString(),title:title,text:text,pos:0,updated:Date.now()};data.texts.unshift(cur)}
+  data.lastId=cur.id;persist();openReading();toast('Testo salvato','ok');
 }
-
 function openText(id){
-  stopSpeech();
-  current = data.texts.find(x=>x.id===id);
-  if(!current) return;
-  data.lastId = id; persist();
-  $('titleInput').value = current.title;
-  $('textInput').value = current.text;
-  updateMeta(); openReading(); showPage('reader');
+  const t=data.texts.find(x=>x.id===id);if(!t)return;
+  if(cur!==t)pause();
+  cur=t;data.lastId=id;
+  $('titleInput').value=t.title;$('textInput').value=t.text;updateMeta();openReading();
 }
-
 function openReading(){
-  $('editorView').style.display='none';
-  $('readingView').style.display='block';
-  $('readingTitle').textContent = current.title;
-  renderReader(); showPage('reader');
+  $('editorView').style.display='none';$('readingView').style.display='block';
+  $('readingTitle').textContent=cur.title;renderReader();showPage('reader');
 }
+function backToEditor(){pause();$('editorView').style.display='block';$('readingView').style.display='none';showPage('reader')}
 
-function backToEditor(){
-  stopSpeech();
-  $('editorView').style.display='block';
-  $('readingView').style.display='none';
-  showPage('reader');
+/* ---------- Lettore ---------- */
+function split(txt){
+  const o=[];
+  txt.replace(/\r/g,'').split(/\n+/).forEach(p=>{
+    let first=true;
+    (p.match(/[^.!?…]+(?:[.!?…]+["»”')\]]*|$)\s*/g)||[]).forEach(s=>{
+      s=s.trim();
+      while(s.length>220){let k=s.lastIndexOf(',',220);if(k<80)k=s.lastIndexOf(' ',220);if(k<1)k=220;o.push({t:s.slice(0,k+1).trim(),p:first});first=false;s=s.slice(k+1).trim()}
+      if(s){o.push({t:s,p:first});first=false}
+    });
+  });
+  return o;
 }
-
-/* ---------- Reader ---------- */
-function splitSentences(text){
-  return text.match(/[^.!?…]+[.!?…]+[\s]*|[^.!?…]+$/g) || [text];
-}
-function esc(s){
-  return s.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-}
-
+const CN=new Map();
+function count(t){const k=t.id+':'+t.text.length;if(!CN.has(k))CN.set(k,split(t.text).length);return CN.get(k)}
+function pctOf(t){return Math.round((t.pos||0)/Math.max(count(t)-1,1)*100)}
 function renderReader(){
-  const parts = splitSentences(current.text);
-  current.parts = parts;
-  currentSentence = Math.max(0, Math.min(current.pos||0, parts.length-1));
-  sentenceStarts = []; let p=0;
-  $('readerText').innerHTML = parts.map((s,i)=>{
-    sentenceStarts.push(p); p += s.length;
-    return '<span data-i="'+i+'" onclick="jumpTo('+i+')">'+esc(s)+'</span>';
-  }).join(' ');
-  applyFontSize(data.settings.font);
-  highlight();
+  sn=split(cur.text);idx=Math.max(0,Math.min(cur.pos||0,sn.length-1));done=false;
+  let h='',o=false;
+  sn.forEach((s,i)=>{if(s.p){if(o)h+='</p>';h+='<p>';o=true}h+='<span data-i="'+i+'">'+esc(s.t)+'</span> '});
+  $('readerText').innerHTML=h+'</p>';applyFont();mark(true);
 }
-
-function highlight(){
-  const spans = document.querySelectorAll('#readerText span');
-  spans.forEach((e,i)=>e.classList.toggle('current', i===currentSentence));
-  if(spans[currentSentence]){
-    const el = spans[currentSentence];
-    const box = $('readerText');
-    const top = el.offsetTop - box.offsetTop - box.clientHeight/2 + el.clientHeight/2;
-    box.scrollTo({top, behavior:'smooth'});
+$('readerText').addEventListener('click',e=>{const i=e.target.dataset&&e.target.dataset.i;if(i!==undefined)jumpTo(+i)});
+function mark(center){
+  const sp=$('readerText').querySelectorAll('span');
+  sp.forEach((e,i)=>{e.className=i<idx?'rd':i===idx?'current':''});
+  const el=sp[idx];
+  if(el&&(center||playing)){
+    const b=$('readerText'),r=el.getBoundingClientRect(),q=b.getBoundingClientRect();
+    b.scrollTo({top:b.scrollTop+(r.top-q.top)-b.clientHeight/2+r.height/2,behavior:center?'auto':'smooth'});
   }
-  const total = spans.length || 1;
-  const pct = Math.round((currentSentence / Math.max(total-1,1)) * 100);
-  $('readProgress').style.width = pct+'%';
-  $('seek').value = pct;
-  $('readingStatus').textContent = `Frase ${currentSentence+1} di ${total} · ${pct}%`;
-  current.pos = currentSentence; current.updated = Date.now();
-  data.lastId = current.id; persist();
+  const n=sn.length,pct=Math.round(idx/Math.max(n-1,1)*100);
+  $('readProgress').style.width=pct+'%';$('seek').value=pct;
+  $('readingStatus').textContent='Frase '+(idx+1)+' di '+n+' · '+pct+'%';
+  cur.pos=idx;cur.updated=Date.now();data.lastId=cur.id;persistSoon();
 }
-
-function jumpTo(i){
-  currentSentence = i; highlight();
-  if(speaking){ stopSpeech(); startSpeech(); }
+function pickVoice(){return voices.find(v=>v.name===S().voice)||voices.find(v=>/^it/i.test(v.lang))||voices[0]||null}
+function speak(i){
+  if(i>=sn.length){done=true;idx=sn.length-1;pause();mark();toast('Fine del testo','ok');return}
+  idx=i;mark();
+  const my=++tok;speechSynthesis.cancel();
+  setTimeout(()=>{
+    if(my!==tok)return;
+    const u=new SpeechSynthesisUtterance(sn[i].t),v=pickVoice();
+    if(v){u.voice=v;u.lang=v.lang}else u.lang='it-IT';
+    u.rate=S().rate;u.pitch=S().pitch;
+    u.onend=()=>{if(my===tok&&playing)speak(i+1)};
+    u.onerror=e=>{if(my===tok&&e.error!=='interrupted'&&e.error!=='canceled'){pause();toast('Errore della voce: '+e.error,'err')}};
+    window._u=u;speechSynthesis.speak(u);
+  },60);
 }
-
-function toggleSpeech(){ speaking ? pauseSpeech() : startSpeech(); }
-
-function startSpeech(){
-  if(!current) return;
-  if(!('speechSynthesis' in window)){ toast('Sintesi vocale non disponibile'); return; }
-  window.speechSynthesis.cancel();
-  const parts = current.parts || splitSentences(current.text);
-  let i = currentSentence;
-  function next(){
-    if(i >= parts.length){
-      speaking = false; setPlayIcon(false);
-      currentSentence = parts.length-1; highlight(); return;
-    }
-    currentSentence = i; highlight();
-    utterance = new SpeechSynthesisUtterance(parts[i]);
-    const v = voices.find(x=>x.name===$('voiceSelect').value)
-      || voices.find(x=>x.lang && x.lang.toLowerCase().startsWith('it'))
-      || voices[0];
-    if(v) utterance.voice = v;
-    utterance.lang = v?.lang || 'it-IT';
-    utterance.rate = Number($('speedRange').value) || 1;
-    utterance.pitch = Number($('pitchRange').value) || 1;
-    utterance.onend = ()=>{ if(speaking){ i++; currentSentence = i; next(); } };
-    utterance.onerror = ()=>{ speaking = false; setPlayIcon(false); };
-    speaking = true; setPlayIcon(true);
-    window.speechSynthesis.speak(utterance);
-  }
-  next();
+function setPlay(p){$('playIcon').style.display=p?'none':'block';$('pauseIcon').style.display=p?'block':'none'}
+function play(){
+  if(!cur)return;
+  if(!('speechSynthesis' in window)){toast('Sintesi vocale non disponibile','err');return}
+  if(done){idx=0;done=false}
+  playing=true;setPlay(true);wake(true);ms();speak(idx);
 }
-
-function setPlayIcon(playing){
-  $('playIcon').style.display = playing ? 'none' : 'block';
-  $('pauseIcon').style.display = playing ? 'block' : 'none';
+function pause(){
+  playing=false;tok++;
+  try{if('speechSynthesis' in window)speechSynthesis.cancel()}catch(e){}
+  setPlay(false);wake(false);
+  if('mediaSession' in navigator)navigator.mediaSession.playbackState='paused';
+  persist();
 }
-function pauseSpeech(){
-  window.speechSynthesis.pause();
-  speaking = false; setPlayIcon(false); persist();
-}
-function stopSpeech(){
-  if('speechSynthesis' in window) window.speechSynthesis.cancel();
-  speaking = false; if($('playBtn')) setPlayIcon(false);
-}
-function skip(dir){
-  if(!current) return;
-  currentSentence = Math.max(0, Math.min((current.parts||[]).length-1, currentSentence + dir));
-  highlight();
-  if(speaking){ stopSpeech(); startSpeech(); }
+function toggleSpeech(){playing?pause():play()}
+function jumpTo(i){done=false;idx=i;mark();play()}
+function skip(d){
+  if(!cur)return;
+  done=false;idx=Math.max(0,Math.min(sn.length-1,idx+d));
+  if(playing)speak(idx);else mark(true);
 }
 function seekPercent(v){
-  if(!current) return;
-  const n = (current.parts||[]).length;
-  currentSentence = Math.round((Number(v)/100) * Math.max(n-1, 0));
-  highlight();
-  if(speaking){ stopSpeech(); startSpeech(); }
+  if(!cur)return;
+  done=false;idx=Math.round(Number(v)/100*Math.max(sn.length-1,0));
+  if(playing){tok++;speechSynthesis.cancel()}
+  mark(true);
 }
+$('seek').addEventListener('change',()=>{if(playing)speak(idx)});
+async function wake(on){
+  try{if(on&&S().wake&&navigator.wakeLock){lock=await navigator.wakeLock.request('screen')}else if(lock){lock.release();lock=null}}catch(e){}
+}
+function ms(){
+  if(!('mediaSession' in navigator)||!cur)return;
+  navigator.mediaSession.metadata=new MediaMetadata({title:cur.title,artist:'AscoltaTesto'});
+  navigator.mediaSession.playbackState='playing';
+  const h=(a,f)=>{try{navigator.mediaSession.setActionHandler(a,f)}catch(e){}};
+  h('play',play);h('pause',pause);h('nexttrack',()=>skip(1));h('previoustrack',()=>skip(-1));
+}
+function cycleSpeed(){
+  const r=[0.8,1,1.2,1.5,1.8],k=r.findIndex(x=>Math.abs(x-S().rate)<.05);
+  S().rate=r[(k+1)%r.length];persist();syncUI();if(playing)speak(idx);
+}
+
+/* ---------- Timer ---------- */
+const TM=[0,15,30,60];let ti=0,sleepT=null;
+function updTmr(){$('timerBtn').textContent='⏱️ '+(TM[ti]?TM[ti]+' min':'Timer')}
+function renderTmr(){$('topts').innerHTML=TM.map((m,i)=>'<button class="opt'+(i===ti?' sel':'')+'" data-i="'+i+'">'+(m?m+' minuti':'Spento')+'</button>').join('')}
+$('topts').addEventListener('click',e=>{
+  const i=e.target.dataset.i;if(i===undefined)return;
+  ti=+i;clearTimeout(sleepT);updTmr();
+  if(TM[ti]){
+    sleepT=setTimeout(()=>{pause();ti=0;updTmr();toast('Timer scaduto: lettura in pausa','ok')},TM[ti]*60000);
+    toast('La lettura si fermerà tra '+TM[ti]+' minuti','ok');
+  }
+  closeSheet();
+});
 
 /* ---------- Archivio ---------- */
 function renderList(){
-  const box = $('textList');
-  const q = ($('searchInput')?.value || '').toLowerCase().trim();
-  let list = data.texts;
-  if(q) list = list.filter(t=>t.title.toLowerCase().includes(q));
+  const box=$('textList'),q=($('searchInput').value||'').toLowerCase().trim();
+  const list=data.texts.filter(t=>!q||t.title.toLowerCase().includes(q));
   if(!list.length){
-    box.innerHTML = `<div class="empty">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      <p>${q ? 'Nessun risultato.' : 'Non hai ancora salvato testi.'}</p>
-      ${q ? '' : '<button class="primary" onclick="newText()" style="margin-top:10px">Crea il primo testo</button>'}
-    </div>`;
+    box.innerHTML='<div class="empty"><p>'+(q?'Nessun risultato.':'Non hai ancora salvato testi.')+'</p>'+(q?'':'<button class="primary" onclick="newText()" style="margin-top:10px">Crea il primo testo</button>')+'</div>';
     return;
   }
-  box.innerHTML = list.map(t=>{
-    const parts = t.parts || splitSentences(t.text);
-    const pct = Math.round(((t.pos||0) / Math.max(parts.length-1,1)) * 100);
-    return `<div class="textitem">
-      <div style="min-width:0;flex:1">
-        <strong>${esc(t.title)}</strong>
-        <small>${pct}% · ${parts.length} frasi</small>
-        <div class="progress" style="margin-top:8px"><i style="width:${pct}%"></i></div>
-      </div>
-      <div class="row" style="flex-wrap:nowrap">
-        <button class="secondary icon-only" onclick="openText('${t.id}')" aria-label="Apri">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </button>
-        <button class="secondary icon-only danger" onclick="deleteText('${t.id}')" aria-label="Elimina">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-        </button>
-      </div>
-    </div>`;
+  box.innerHTML=list.map(t=>{
+    const p=pctOf(t);
+    return '<div class="textitem"><div style="min-width:0;flex:1"><strong>'+esc(t.title)+'</strong><small>'+p+'% · '+count(t)+' frasi</small><div class="progress" style="margin-top:8px"><i style="width:'+p+'%"></i></div></div><div class="row" style="flex-wrap:nowrap"><button class="secondary icon-only" onclick="openText(\''+t.id+'\')" aria-label="Apri">'+IC.play+'</button><button class="secondary icon-only danger" onclick="deleteText(\''+t.id+'\')" aria-label="Elimina">'+IC.trash+'</button></div></div>';
   }).join('');
 }
-
-function deleteText(id){
-  if(!confirm('Eliminare questo testo?')) return;
-  data.texts = data.texts.filter(x=>x.id!==id);
-  if(data.lastId===id) data.lastId=null;
-  persist(); renderList(); renderContinue();
+async function deleteText(id){
+  const t=data.texts.find(x=>x.id===id);if(!t)return;
+  const r=await ask({icon:'🗑️',title:'Eliminare il testo?',msg:'«'+t.title+'» verrà rimosso da questo dispositivo.',ok:'Elimina',danger:true});
+  if(!r)return;
+  if(cur===t){pause();resetReader()}
+  data.texts=data.texts.filter(x=>x!==t);
+  if(data.lastId===id)data.lastId=null;
+  persist();renderList();renderContinue();toast('Testo eliminato','ok');
 }
-
+function lastText(){return data.texts.find(x=>x.id===data.lastId)||data.texts[0]}
 function renderContinue(){
-  const t = data.texts.find(x=>x.id===data.lastId) || data.texts[0];
-  if(!t){ $('continueInfo').textContent='Nessun testo da continuare.'; $('continueBtn').style.display='none'; return; }
-  const parts = splitSentences(t.text);
-  const pct = Math.round(((t.pos||0) / Math.max(parts.length-1,1)) * 100);
-  $('continueInfo').innerHTML = '<strong>'+esc(t.title)+'</strong><br>'+pct+'% completato';
-  $('continueBtn').style.display = 'inline-flex';
+  const t=lastText();
+  if(!t){$('continueInfo').textContent='Nessun testo da continuare.';$('continueBtn').style.display='none';return}
+  $('continueInfo').innerHTML='<strong>'+esc(t.title)+'</strong><br>'+pctOf(t)+'% completato';
+  $('continueBtn').style.display='inline-flex';
 }
-function continueLast(){
-  const t = data.texts.find(x=>x.id===data.lastId) || data.texts[0];
-  if(t) openText(t.id);
-}
+function continueLast(){const t=lastText();if(t)openText(t.id)}
 
-/* ---------- Export / Import ---------- */
+/* ---------- Esporta / Importa ---------- */
 function exportJSON(){
-  const payload = {
-    app:'AscoltaTesto', version: APP_VERSION,
-    exported: new Date().toISOString(),
-    texts: data.texts, settings: data.settings
-  };
-  const blob = new Blob([JSON.stringify(payload,null,2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'ascoltatesto-backup-'+new Date().toISOString().slice(0,10)+'.json';
-  a.click(); URL.revokeObjectURL(url);
-  toast('Backup esportato');
+  const blob=new Blob([JSON.stringify({app:'AscoltaTesto',version:APP_VERSION,exported:new Date().toISOString(),texts:data.texts},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='ascoltatesto-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Backup esportato','ok');
 }
-function importJSON(){ $('importFile').click(); }
-
-$('importFile').addEventListener('change', e=>{
-  const file = e.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ()=>{
-    try{
-      const obj = JSON.parse(reader.result);
-      if(!obj.texts || !Array.isArray(obj.texts)) throw new Error('Formato non valido');
-      const mode = confirm('Vuoi SOSTITUIRE i testi attuali?\n\nOK = Sostituisci\nAnnulla = Unisci');
-      if(mode){ data.texts = obj.texts; }
-      else{
-        const existing = new Set(data.texts.map(t=>t.id));
-        obj.texts.forEach(t=>{ if(!existing.has(t.id)) data.texts.push(t); });
-      }
-      if(obj.settings) data.settings = {...data.settings, ...obj.settings};
-      persist(); renderList(); renderContinue(); applyAllSettings();
-      toast('Importazione completata');
-    }catch(err){ toast('File non valido'); }
-    e.target.value = '';
-  };
-  reader.readAsText(file);
+function importJSON(){$('importFile').click()}
+$('importFile').addEventListener('change',async e=>{
+  const f=e.target.files[0];if(!f)return;
+  try{
+    const o=JSON.parse(await f.text());
+    if(!Array.isArray(o.texts))throw new Error('formato');
+    const clean=o.texts.filter(t=>t&&t.text).map((t,i)=>({id:String(t.id||Date.now()+'-'+i),title:t.title||'Testo importato',text:t.text,pos:t.pos||0,updated:t.updated||Date.now()}));
+    const r=await ask({icon:'📥',title:'Importa testi',msg:'Trovati '+clean.length+' testi. Vuoi unirli a quelli attuali o sostituirli?',ok:'Unisci',alt:'Sostituisci'});
+    if(!r){e.target.value='';return}
+    if(r==='alt'){
+      const c=await ask({icon:'⚠️',title:'Sostituire tutto?',msg:'I testi attuali verranno cancellati.',ok:'Sostituisci',danger:true});
+      if(!c){e.target.value='';return}
+      pause();resetReader();data.texts=clean;data.lastId=null;
+    }else{
+      const ex=new Set(data.texts.map(t=>t.id));
+      clean.forEach(t=>{if(!ex.has(t.id))data.texts.push(t)});
+    }
+    persist();renderList();renderContinue();toast('Importazione completata','ok');
+  }catch(err){toast('File non valido','err')}
+  e.target.value='';
 });
 
-/* ---------- Voci ---------- */
+/* ---------- Voci e impostazioni ---------- */
 function loadVoices(){
-  if(!('speechSynthesis' in window)) return;
-  voices = window.speechSynthesis.getVoices() || [];
-  const sel = $('voiceSelect'); if(!sel) return;
-  if(!voices.length){ setTimeout(loadVoices, 300); return; }
-  const old = data.settings.voice;
-  sel.innerHTML = '';
-  const sorted = [...voices].sort((a,b)=>{
-    const ai = a.lang.toLowerCase().startsWith('it') ? 0 : 1;
-    const bi = b.lang.toLowerCase().startsWith('it') ? 0 : 1;
-    return ai - bi;
-  });
-  sorted.forEach(v=>{
-    const o = document.createElement('option');
-    o.value = v.name; o.textContent = v.name + ' — ' + v.lang;
-    sel.appendChild(o);
-  });
-  if(old && [...sel.options].some(o=>o.value===old)) sel.value = old;
-  else { const it = sorted.find(v=>v.lang.toLowerCase().startsWith('it')); if(it) sel.value = it.name; }
-  saveSettings();
+  if(!('speechSynthesis' in window))return;
+  voices=speechSynthesis.getVoices()||[];
+  if(!voices.length)return;
+  const sorted=[...voices].sort((a,b)=>(/^it/i.test(b.lang)-/^it/i.test(a.lang))||a.name.localeCompare(b.name));
+  $('voiceSelect').innerHTML=sorted.map(v=>'<option value="'+esc(v.name)+'">'+esc(v.name)+' — '+esc(v.lang)+'</option>').join('');
+  const v=pickVoice();if(v)$('voiceSelect').value=v.name;
+  syncUI();
 }
-
-/* ---------- Impostazioni / Tab ---------- */
-function openSettings(){
-  loadVoices();
-  $('speedRange').value = data.settings.rate;
-  $('pitchRange').value = data.settings.pitch;
-  $('fontRange').value = data.settings.font;
-  $('speedValue').textContent = Number(data.settings.rate).toFixed(1).replace('.',',')+'×';
-  $('pitchValue').textContent = Number(data.settings.pitch).toFixed(1).replace('.',',');
-  $('fontValue').textContent = data.settings.font+'px';
-  $('fontPreview').style.fontSize = data.settings.font+'px';
-  renderThemes();
-  switchTab('settings');
-  $('settingsModal').classList.add('show');
+function applyFont(){$('readerText').style.fontSize=S().font+'px';$('textInput').style.fontSize=S().font+'px'}
+function syncUI(){
+  const s=S();
+  $('speedRange').value=s.rate;$('pitchRange').value=s.pitch;$('fontRange').value=s.font;$('wakeChk').checked=s.wake;
+  $('speedValue').textContent=fmt(s.rate)+'×';$('pitchValue').textContent=fmt(s.pitch);
+  $('fontValue').textContent=s.font+'px';$('fontPreview').style.fontSize=s.font+'px';
+  $('speedLabel').textContent=fmt(s.rate)+'×';
+  const n=s.voice||(pickVoice()||{}).name||'automatica';
+  $('voiceLabel').textContent='Voce: '+(n.length>24?n.slice(0,22)+'…':n);
+  applyFont();
 }
-function closeSettings(){
-  saveSettings();
-  $('settingsModal').classList.remove('show');
+function saveSettings(){
+  const s=S();
+  s.rate=Number($('speedRange').value)||1;s.pitch=Number($('pitchRange').value)||1;
+  s.font=Number($('fontRange').value)||16;s.wake=$('wakeChk').checked;
+  s.voice=$('voiceSelect').value||s.voice;
+  persist();syncUI();
 }
-function switchTab(name){
-  document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.tabbar button').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
-  if(name==='settings'){
-    $('tabSettings').classList.add('active');
-    $('tabBtnSettings').classList.add('active');
-    $('tabBtnSettings').setAttribute('aria-selected','true');
-  } else {
-    $('tabGuide').classList.add('active');
-    $('tabBtnGuide').classList.add('active');
-    $('tabBtnGuide').setAttribute('aria-selected','true');
-    $('yearNow').textContent = new Date().getFullYear();
-  }
+function onFontChange(v){S().font=Number(v)||16;persist();syncUI()}
+$('voiceSelect').addEventListener('change',saveSettings);
+function tryVoice(){
+  if(!('speechSynthesis' in window)){toast('Sintesi vocale non disponibile','err');return}
+  const was=playing;if(was)pause();
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance('Ciao, questa è la voce che leggerà i tuoi testi.'),v=pickVoice();
+  if(v){u.voice=v;u.lang=v.lang}else u.lang='it-IT';
+  u.rate=S().rate;u.pitch=S().pitch;window._u=u;speechSynthesis.speak(u);
 }
 
 /* ---------- Temi ---------- */
 function renderThemes(){
-  const grid = $('themesGrid');
-  grid.innerHTML = THEMES.map(t=>{
-    const isActive = data.settings.theme === t.id;
-    const sw = `background:linear-gradient(135deg, ${t.colors[0]}, ${t.colors[1]} 60%, ${t.colors[2]})`;
-    return `<div class="themecard ${isActive?'active':''}" onclick="setTheme('${t.id}')" role="button" tabindex="0">
-      <div class="swatch" style="${sw}"></div>
-      <span>${t.label}</span>
-      <small>${t.sub}</small>
-    </div>`;
-  }).join('');
+  $('themesGrid').innerHTML=THEMES.map(t=>'<div class="themecard '+(S().theme===t.id?'active':'')+'" onclick="setTheme(\''+t.id+'\')" role="button" tabindex="0"><div class="swatch" style="background:linear-gradient(135deg,'+t.colors[0]+','+t.colors[1]+' 60%,'+t.colors[2]+')"></div><span>'+t.label+'</span><small>'+t.sub+'</small></div>').join('');
 }
-function setTheme(id){
-  data.settings.theme = id;
-  persist();
-  applyTheme();
-  renderThemes();
-}
+function setTheme(id){S().theme=id;persist();applyTheme();renderThemes()}
+const isDark=()=>S().mode==='auto'?matchMedia('(prefers-color-scheme: dark)').matches:S().mode==='dark';
+function toggleMode(){S().mode=isDark()?'light':'dark';persist();applyTheme()}
 function applyTheme(){
-  let id = data.settings.theme || 'auto';
-  if(id === 'auto') id = 'blunotte';
-  document.body.setAttribute('data-theme', id);
-  // Aggiorna theme-color della status bar
-  const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim();
-  if(themeColor){
-    let meta = document.querySelector('meta[name="theme-color"]');
-    if(!meta){ meta = document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
-    meta.setAttribute('content', themeColor);
-  }
+  const b=document.body;b.dataset.theme=S().theme;
+  if(S().mode==='auto')b.removeAttribute('data-mode');else b.dataset.mode=S().mode;
+  $('modeItem').innerHTML='<span>'+(isDark()?'☀️':'🌙')+'</span>'+(isDark()?'Tema Chiaro':'Tema Scuro');
+  const c=getComputedStyle(b).getPropertyValue('--theme-color').trim(),m=document.querySelector('meta[name="theme-color"]');
+  if(c&&m)m.setAttribute('content',c);
 }
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme);
 
-/* ---------- Font size ---------- */
-function onFontChange(val){
-  const size = Number(val);
-  $('fontValue').textContent = size+'px';
-  $('fontPreview').style.fontSize = size+'px';
-  applyFontSize(size);
-  saveSettings();
-}
-function applyFontSize(size){
-  if($('readerText')) $('readerText').style.fontSize = size+'px';
-  if($('textInput')) $('textInput').style.fontSize = size+'px';
-}
-
-/* ---------- Salvataggio impostazioni ---------- */
-function saveSettings(){
-  data.settings.rate = Number($('speedRange').value);
-  data.settings.pitch = Number($('pitchRange').value);
-  data.settings.font = Number($('fontRange').value);
-  data.settings.voice = $('voiceSelect').value || data.settings.voice;
-  persist();
-  applyFontSize(data.settings.font);
-  if($('speedLabel')) $('speedLabel').textContent = data.settings.rate.toFixed(1).replace('.',',')+'×';
-  if($('voiceLabel')){
-    const name = data.settings.voice || 'automatica';
-    $('voiceLabel').textContent = 'Voce: ' + (name.length>28 ? name.slice(0,26)+'…' : name);
-  }
-}
-
-function applyAllSettings(){
-  if($('speedRange')){
-    $('speedRange').value = data.settings.rate;
-    $('pitchRange').value = data.settings.pitch;
-    $('fontRange').value = data.settings.font;
-    $('speedValue').textContent = Number(data.settings.rate).toFixed(1).replace('.',',')+'×';
-    $('pitchValue').textContent = Number(data.settings.pitch).toFixed(1).replace('.',',');
-    $('fontValue').textContent = data.settings.font+'px';
-    $('fontPreview').style.fontSize = data.settings.font+'px';
-  }
-  applyFontSize(data.settings.font);
-  applyTheme();
-  renderThemes();
-}
-
-$('voiceSelect').addEventListener('change', saveSettings);
-
-if('speechSynthesis' in window){
-  window.speechSynthesis.onvoiceschanged = loadVoices;
-  loadVoices();
-}
-
-/* ---------- Init ---------- */
-applyTheme();
-applyAllSettings();
-renderContinue();
-renderList();
-updateMeta();
-setupBackButton();
-
-/* Pausa quando l'app va in background */
-document.addEventListener('visibilitychange', ()=>{
-  if(document.hidden && speaking) pauseSpeech();
+/* ---------- Avvio ---------- */
+$('yearNow').textContent=new Date().getFullYear();
+applyTheme();syncUI();renderContinue();renderList();updateMeta();updTmr();
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;loadVoices();setTimeout(loadVoices,800)}
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden)persist();
+  else if(playing){wake(true);if(!speechSynthesis.speaking&&!speechSynthesis.pending)speak(idx)}
 });
-
-/* Service Worker */
-if('serviceWorker' in navigator){
-  window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  });
-}
+addEventListener('pagehide',persist);
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
 </body>
 </html>

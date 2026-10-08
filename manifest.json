@@ -2,27 +2,18 @@
   "name": "AscoltaTesto",
   "short_name": "AscoltaTesto",
   "description": "Il tuo lettore vocale personale. Incolla un testo, scegli la voce e ascoltalo.",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#eef4ff",
   "theme_color": "#172554",
   "lang": "it",
-  "version": "2.0.0",
   "categories": ["productivity", "utilities", "education"],
   "icons": [
-    {
-      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='42' fill='%232563eb'/><path d='M96 40v70a26 26 0 1 1-8-18V56l48-12v58a26 26 0 1 1-8-18V40z' fill='white'/></svg>",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='112' fill='%232563eb'/><path d='M256 106v186a70 70 0 1 1-21-49V150l128-32v155a70 70 0 1 1-21-49V106z' fill='white'/></svg>",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    {"src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "./icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "./icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
   ]
 }

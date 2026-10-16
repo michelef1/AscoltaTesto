@@ -593,6 +593,7 @@ select{
 .credits .app-version{color:var(--muted);font-size:13px}
 .credits .app-author{font-weight:700;margin-top:4px}
 .credits .app-year{color:var(--muted);font-size:12px}
+
 /* ============================================================
    v1.1 — menu, pannelli dal basso, dialoghi, notifiche
    ============================================================ */
@@ -794,14 +795,14 @@ select{
         <div class="progress" style="margin-top:14px"><i id="readProgress" style="width:0%"></i></div>
       </div>
 
-      <div id="readerText" class="readerText"></div>
+      <div id="readerText" class="readerText" role="region" aria-label="Testo da leggere"></div>
 
       <div class="controls">
         <div class="row spread" style="justify-content:center;gap:18px">
           <button class="secondary icon-only" onclick="skip(-1)" aria-label="Frase precedente">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
           </button>
-          <button class="bigplay" id="playBtn" onclick="toggleSpeech()" aria-label="Play/Pausa">
+          <button class="bigplay" id="playBtn" onclick="toggleSpeech()" aria-label="Play/Pausa" aria-pressed="false">
             <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
           </button>
@@ -869,7 +870,7 @@ select{
 <section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>Dopo una pausa, la lettura riparte dall'inizio della frase corrente.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni puoi provare ogni voce.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
 <section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.4</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.5</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
 <section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
 <section class="sheet" id="sh-bm" role="dialog" aria-modal="true" aria-label="🔖 Segnalibri"><div class="grab"></div><div class="sh-h"><b>🔖 Segnalibri</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><button class="primary" id="bmAdd" style="width:100%;justify-content:center;margin-bottom:14px">＋ Aggiungi segnalibro qui</button><div id="bmList"></div></div></section>
 <section class="sheet" id="sh-pg" role="dialog" aria-modal="true" aria-label="📖 Vai a pagina"><div class="grab"></div><div class="sh-h"><b>📖 Vai a pagina</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" id="pgInfo" style="margin-top:0"></p><div class="row" style="flex-wrap:nowrap"><input id="pgNum" type="number" inputmode="numeric" min="1" placeholder="Numero di pagina" style="flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text)"><button class="primary" id="pgGo">Vai</button></div></div></section>
@@ -879,8 +880,8 @@ select{
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
-/* AscoltaTesto v1.1 */
-const APP_VERSION='1.4';
+/* AscoltaTesto v1.5 */
+const APP_VERSION='1.5';
 const KEY='ascoltatesto_v2';
 const THEMES=[
 {id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
@@ -898,7 +899,7 @@ const $=id=>document.getElementById(id);
 const fmt=n=>Number(n).toFixed(1).replace('.',',');
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 
-let cur=null,sn=[],idx=0,playing=false,done=false,tok=0,lock=null,voices=[],page='home',curSheet=null,dlgRes=null,dp=null,st,body='',spans=[],lastIdx=-1,pdfReady=null,pdfCancel=false,pgl=null,marks=[],progScroll=0;
+let cur=null,sn=[],idx=0,playing=false,done=false,tok=0,lock=null,voices=[],page='home',curSheet=null,dlgRes=null,dp=null,st,body='',spans=[],lastIdx=-1,pdfReady=null,pdfCancel=false,pgl=null,marks=[],progScroll=0,persistFailed=false;
 
 /* ---------- Dati ---------- */
 function load(){
@@ -928,12 +929,42 @@ async function migrate(){
   }
   if(ch)persist();
 }
-function persist(){clearTimeout(st);try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){toast('Spazio esaurito: elimina qualche testo','err')}}
+async function integrityCheck(){
+  // Toglie dall'elenco SOLO i testi che l'archivio interno, raggiungibile, dichiara davvero mancanti.
+  // Se l'archivio non risponde, o il testo è ancora in localStorage (da migrare), non tocca niente.
+  if(!window.indexedDB)return;
+  try{await DB.open()}catch(e){return}
+  const orphans=[];
+  for(const t of data.texts){
+    if(typeof t.text==='string')continue;
+    let b;try{b=await DB.get(t.id)}catch(e){return}
+    if(b===undefined||b===null)orphans.push(t.id);
+  }
+  if(orphans.length){
+    data.texts=data.texts.filter(t=>!orphans.includes(t.id));
+    if(orphans.includes(data.lastId))data.lastId=data.texts.length?data.texts[0].id:null;
+    persist();
+    toast(orphans.length===1?'Un testo non più disponibile è stato tolto dall\'elenco':orphans.length+' testi non più disponibili sono stati tolti dall\'elenco');
+  }
+}
+function persist(){
+  clearTimeout(st);
+  try{
+    localStorage.setItem(KEY,JSON.stringify(data));
+    persistFailed=false;
+  }catch(e){
+    if(!persistFailed){
+      persistFailed=true;
+      toast('Spazio esaurito: esporta un backup ed elimina qualche testo','err');
+    }
+  }
+}
 function persistSoon(){clearTimeout(st);st=setTimeout(persist,700)}
 function toast(m,k){
   const e=$('toast');
+  const msg=m==null?'':String(m);
   e.innerHTML='<span>'+({ok:'✅',err:'⚠️'}[k]||'ℹ️')+'</span><span></span>';
-  e.lastChild.textContent=m;e.classList.add('show');
+  e.lastChild.textContent=msg;e.classList.add('show');
   clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2600);
 }
 
@@ -954,6 +985,15 @@ $('dinp').addEventListener('keydown',e=>{if(e.key==='Enter')$('dok').click()});
 $('dalt').onclick=()=>dlgDone('alt');
 $('dcn').onclick=()=>dlgDone(false);
 $('dlg').onclick=e=>{if(e.target.id==='dlg')dlgDone(false)};
+/* focus trap nel dialog */
+$('dlg').addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const focusables=Array.from($('dlg').querySelectorAll('button, input')).filter(el=>el.offsetParent!==null);
+  if(!focusables.length)return;
+  const first=focusables[0],last=focusables[focusables.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
 
 /* ---------- Menu e pannelli ---------- */
 const mn=$('menu'),ov=$('ov');
@@ -1038,14 +1078,20 @@ function resetReader(){
   cur=null;sn=[];body='';spans=[];lastIdx=-1;
   $('editorView').style.display='block';$('readingView').style.display='none';
   $('titleInput').value='';$('textInput').value='';updateMeta();
+  $('pdfDrop').style.display='';$('pdfProg').style.display='none';
+  $('pdfFile').value='';$('pdfBar').style.width='0%';$('pdfStat').textContent='';$('pdfName').textContent='';
 }
 function setMode(m){
   $('paneText').style.display=m==='text'?'':'none';$('paneFile').style.display=m==='file'?'':'none';
   $('tabTxt').classList.toggle('on',m==='text');$('tabFile').classList.toggle('on',m==='file');
+  if(m==='file')loadPdfJs().catch(()=>{});
 }
 function newText(){pause();resetReader();setMode('text');$('segBar').style.display='';$('saveLbl').textContent='Salva e apri';$('edTitle').textContent='Nuovo testo';showPage('reader');setTimeout(()=>$('titleInput').focus(),200)}
-async function commitText(title,text,po,kind){
-  const isNew=!cur,changed=!isNew&&body!==text,id=isNew?Date.now().toString():cur.id;
+async function commitText(title,text,po,kind,opts){
+  opts=opts||{};
+  const isNew=opts.asNew||!cur;
+  const changed=!isNew&&body!==text;
+  const id=isNew?Date.now().toString():cur.id;
   if(isNew||changed){
     try{await DB.set(id,text)}catch(e){toast('Impossibile salvare: memoria del browser non disponibile','err');return false}
   }
@@ -1073,7 +1119,12 @@ function openReading(){
   $('editorView').style.display='none';$('readingView').style.display='block';
   $('readingTitle').textContent=cur.title;renderReader();showPage('reader');
 }
-function backToEditor(){pause();setMode('text');$('segBar').style.display='none';$('saveLbl').textContent='Salva modifiche';$('edTitle').textContent='Modifica testo';$('titleInput').value=cur?cur.title:'';$('textInput').value=body;updateMeta();$('editorView').style.display='block';$('readingView').style.display='none';showPage('reader')}
+function backToEditor(){
+  pause();setMode('text');$('segBar').style.display='none';
+  $('saveLbl').textContent='Salva modifiche';$('edTitle').textContent='Modifica testo';
+  $('titleInput').value=cur?cur.title:'';$('textInput').value=body;updateMeta();
+  $('editorView').style.display='block';$('readingView').style.display='none';showPage('reader')
+}
 
 /* ---------- Lettore ---------- */
 function split(txt){
@@ -1086,7 +1137,9 @@ function split(txt){
       st+=s.length-s.trimStart().length;s=s.trim();
       while(s.length>220){
         let k=s.lastIndexOf(',',220);if(k<80)k=s.lastIndexOf(' ',220);if(k<1)k=220;
-        o.push({t:s.slice(0,k+1).trim(),p:first,s:st});first=false;
+        const piece=s.slice(0,k+1).trim();
+        if(piece)o.push({t:piece,p:first,s:st});
+        first=false;
         const rest=s.slice(k+1);st+=k+1+(rest.length-rest.trimStart().length);s=rest.trim();
       }
       if(s){o.push({t:s,p:first,s:st});first=false}
@@ -1112,6 +1165,7 @@ function setBadge(p){
   b.style.display='';b.textContent=(cur.pg?'📄 Pagina ':'📖 Pagina ~')+p+' / '+(cur.pg?'':'~')+pgl.length;
 }
 function visiblePage(){
+  if(!marks.length)return 1;
   const top=$('readerText').getBoundingClientRect().top+30;
   let lo=0,hi=marks.length-1,a=-1;
   while(lo<=hi){const m=(lo+hi)>>1;if(marks[m].getBoundingClientRect().top<=top){a=m;lo=m+1}else hi=m-1}
@@ -1123,8 +1177,18 @@ $('readerText').addEventListener('scroll',()=>{
   scTick=true;requestAnimationFrame(()=>{scTick=false;setBadge(visiblePage())});
 },{passive:true});
 function renderReader(){
-  sn=split(body);idx=Math.max(0,Math.min(cur.pos||0,sn.length-1));done=false;
-  pgl=cur.pg||virtPages();
+  sn=split(body);
+  if(!sn.length){
+    $('readerText').innerHTML='<p class="muted">Questo testo è vuoto.</p>';
+    spans=[];marks=[];idx=0;lastIdx=-1;
+    $('pgBtn').style.display='none';
+    $('readProgress').style.width='0%';$('seek').value=0;
+    $('readingStatus').textContent='Nessuna frase';
+    $('pgBadge').style.display='none';
+    return;
+  }
+  idx=Math.max(0,Math.min(cur.pos||0,sn.length-1));done=false;
+  pgl=(Array.isArray(cur.pg)&&cur.pg.length)?cur.pg:virtPages();
   const at=new Map();if(pgl)pgl.forEach((si,k)=>at.set(si,k+1));
   let h='',o=false;
   sn.forEach((s,i)=>{
@@ -1133,15 +1197,26 @@ function renderReader(){
     else if(s.p){if(o)h+='</p>';h+='<p>';o=true}
     h+='<span data-i="'+i+'">'+esc(s.t)+'</span> ';
   });
-  $('readerText').innerHTML=h+'</p>';
-  spans=Array.from($('readerText').querySelectorAll('span'));marks=Array.from($('readerText').querySelectorAll('.pgmark'));
+  $('readerText').innerHTML=h+(o?'</p>':'');
+  spans=Array.from($('readerText').querySelectorAll('span'));
+  marks=Array.from($('readerText').querySelectorAll('.pgmark'));
   lastIdx=-1;$('pgBtn').style.display=pgl?'':'none';applyFont();mark(true);
 }
 $('readerText').addEventListener('click',e=>{const i=e.target.dataset&&e.target.dataset.i;if(i!==undefined)jumpTo(+i)});
 function mark(center){
   const sp=spans;
-  if(lastIdx>=0&&idx===lastIdx+1&&sp[lastIdx]&&sp[idx]){sp[lastIdx].className='rd';sp[idx].className='current'}
-  else sp.forEach((e,i)=>{e.className=i<idx?'rd':i===idx?'current':''});
+  if(!sp.length)return;
+  if(lastIdx<0){
+    sp.forEach((e,i)=>{e.className=i<idx?'rd':i===idx?'current':''});
+  }else{
+    // Pulisce il vecchio "current" prima di riassegnare
+    if(sp[lastIdx]&&sp[lastIdx].className==='current')sp[lastIdx].className='rd';
+    // Aggiorna l'intervallo tra vecchio e nuovo indice
+    const lo=Math.min(idx,lastIdx),hi=Math.max(idx,lastIdx);
+    for(let i=lo;i<=hi;i++){
+      if(sp[i])sp[i].className=i<idx?'rd':i===idx?'current':'';
+    }
+  }
   lastIdx=idx;
   const el=sp[idx];
   if(el&&(center||playing)){
@@ -1164,14 +1239,19 @@ function speak(i){
     if(v){u.voice=v;u.lang=v.lang}else u.lang='it-IT';
     u.rate=S().rate;u.pitch=S().pitch;
     u.onend=()=>{if(my===tok&&playing)speak(i+1)};
-    u.onerror=e=>{if(my===tok&&e.error!=='interrupted'&&e.error!=='canceled'){pause();toast('Errore della voce: '+e.error,'err')}};
+    u.onerror=e=>{if(my===tok&&e.error!=='interrupted'&&e.error!=='canceled'){pause();toast('Errore della voce: '+(e.error||e.message||'sconosciuto'),'err')}};
     window._u=u;speechSynthesis.speak(u);
   },60);
 }
-function setPlay(p){$('playIcon').style.display=p?'none':'block';$('pauseIcon').style.display=p?'block':'none'}
+function setPlay(p){
+  $('playIcon').style.display=p?'none':'block';
+  $('pauseIcon').style.display=p?'block':'none';
+  $('playBtn').setAttribute('aria-pressed',String(p));
+}
 function play(){
   if(!cur)return;
   if(!('speechSynthesis' in window)){toast('Sintesi vocale non disponibile','err');return}
+  if(!sn.length){toast('Nessun testo da leggere','err');return}
   if(done){idx=0;done=false}
   playing=true;setPlay(true);wake(true);ms();speak(idx);
 }
@@ -1183,25 +1263,40 @@ function pause(){
   persist();
 }
 function toggleSpeech(){playing?pause():play()}
-function jumpTo(i){done=false;idx=i;mark();play()}
+function jumpTo(i){if(!sn.length)return;done=false;idx=Math.max(0,Math.min(sn.length-1,i));mark();play()}
 function skip(d){
-  if(!cur)return;
+  if(!cur||!sn.length)return;
   done=false;idx=Math.max(0,Math.min(sn.length-1,idx+d));
   if(playing)speak(idx);else mark(true);
 }
 function seekPercent(v){
-  if(!cur)return;
+  if(!cur||!sn.length)return;
   done=false;idx=Math.round(Number(v)/100*Math.max(sn.length-1,0));
-  if(playing){tok++;speechSynthesis.cancel()}
+  if(playing){tok++;try{speechSynthesis.cancel()}catch(e){}}
   mark(true);
 }
 $('seek').addEventListener('change',()=>{if(playing)speak(idx)});
 async function wake(on){
-  try{if(on&&S().wake&&navigator.wakeLock){lock=await navigator.wakeLock.request('screen')}else if(lock){lock.release();lock=null}}catch(e){}
+  try{
+    if(on&&S().wake&&navigator.wakeLock){
+      if(lock&&!lock.released)return;
+      lock=await navigator.wakeLock.request('screen');
+      lock.addEventListener('release',()=>{lock=null});
+    }else if(lock){
+      try{await lock.release()}catch(e){}
+      lock=null;
+    }
+  }catch(e){}
 }
 function ms(){
   if(!('mediaSession' in navigator)||!cur)return;
-  navigator.mediaSession.metadata=new MediaMetadata({title:cur.title,artist:'AscoltaTesto'});
+  try{
+    navigator.mediaSession.metadata=new MediaMetadata({
+      title:cur.title,
+      artist:'AscoltaTesto',
+      artwork:[{src:'./icons/icon-192.png',sizes:'192x192',type:'image/png'}]
+    });
+  }catch(e){}
   navigator.mediaSession.playbackState='playing';
   const h=(a,f)=>{try{navigator.mediaSession.setActionHandler(a,f)}catch(e){}};
   h('play',play);h('pause',pause);h('nexttrack',()=>skip(1));h('previoustrack',()=>skip(-1));
@@ -1230,9 +1325,9 @@ $('bmList').addEventListener('click',e=>{
   else if(m){closeSheet();jumpTo(+m.dataset.i)}
 });
 function goPage(){
-  if(!cur||!pgl)return;
+  if(!cur||!pgl){toast('Nessuna pagina disponibile','err');return}
   const v=parseInt($('pgNum').value,10);
-  if(!v){toast('Scrivi il numero di pagina','err');return}
+  if(!v||v<1||isNaN(v)){toast('Scrivi un numero di pagina valido','err');return}
   closeSheet();jumpTo(pgl[Math.min(pgl.length,v)-1]);
 }
 $('pgGo').onclick=goPage;
@@ -1297,9 +1392,9 @@ async function deleteText(id){
   const r=await ask({icon:'🗑️',title:'Eliminare il testo?',msg:'«'+t.title+'» verrà rimosso da questo dispositivo.',ok:'Elimina',danger:true});
   if(!r)return;
   if(cur===t){pause();resetReader()}
-  try{await DB.del(id)}catch(e){}
+  try{await DB.del(id)}catch(e){console.warn('DB.del failed',e)}
   data.texts=data.texts.filter(x=>x!==t);
-  if(data.lastId===id)data.lastId=null;
+  if(data.lastId===id)data.lastId=data.texts.length?data.texts[0].id:null;
   persist();renderList();renderContinue();toast('Testo eliminato','ok');
 }
 function lastText(){return data.texts.find(x=>x.id===data.lastId)||data.texts[0]}
@@ -1330,7 +1425,7 @@ $('importFile').addEventListener('change',async e=>{
     if(!Array.isArray(o.texts))throw new Error('formato');
     const clean=o.texts.filter(t=>t&&t.text).map((t,i)=>({id:String(t.id||Date.now()+'-'+i),title:t.title||'Testo importato',text:t.text,pos:t.pos||0,updated:t.updated||Date.now(),bm:Array.isArray(t.bm)?t.bm:undefined,pg:Array.isArray(t.pg)?t.pg:undefined,kind:t.kind||undefined}));
     const r=await ask({icon:'📥',title:'Importa testi',msg:'Trovati '+clean.length+' testi. Vuoi unirli a quelli attuali o sostituirli?',ok:'Unisci',alt:'Sostituisci'});
-    if(!r){e.target.value='';return}
+    if(r!=='ok'&&r!=='alt'){e.target.value='';return}
     let add=clean;
     if(r==='alt'){
       const c=await ask({icon:'⚠️',title:'Sostituire tutto?',msg:'I testi attuali verranno cancellati.',ok:'Sostituisci',danger:true});
@@ -1412,6 +1507,9 @@ async function pdfToText(file,onProg){
   return {text:out.replace(/\n+$/,''),pages:N,po:po};
 }
 function cancelPdf(){pdfCancel=true}
+function cleanTitle(s){
+  return String(s||'').replace(/[\\\/:*?"<>|]+/g,' ').replace(/\s+/g,' ').trim();
+}
 async function importPdf(file){
   if(!file)return;
   pause();pdfCancel=false;
@@ -1433,9 +1531,10 @@ async function importPdf(file){
     await ask({icon:'🖼️',title:'Nessun testo trovato',msg:'Questo PDF sembra una scansione (solo immagini) e non contiene testo selezionabile, quindi non posso leggerlo.',ok:'Ho capito',cancel:false});
     return;
   }
-  const title=$('titleInput').value.trim()||file.name.replace(/\.pdf$/i,'').replace(/_+/g,' ').trim()||'PDF importato';
+  const typed=$('titleInput').value.trim();
+  const title=typed||cleanTitle(file.name.replace(/\.pdf$/i,'').replace(/_+/g,' '))||'PDF importato';
   resetReader();
-  if(await commitText(title,res.text,res.po,'pdf')){openReading();toast('PDF importato: '+res.pages+' pagine','ok')}
+  if(await commitText(title,res.text,res.po,'pdf',{asNew:true})){openReading();toast('PDF importato: '+res.pages+' pagine','ok')}
 }
 async function importFile(file){
   if(!file)return;
@@ -1446,9 +1545,10 @@ async function importFile(file){
     if(t.includes('\ufffd'))t=new TextDecoder('windows-1252').decode(buf);
     t=t.replace(/\u0000/g,'').trim();
     if(!t){toast('Il file è vuoto','err');return}
-    const title=$('titleInput').value.trim()||file.name.replace(/\.[^.]+$/,'');
+    const typed=$('titleInput').value.trim();
+    const title=typed||cleanTitle(file.name.replace(/\.[^.]+$/,''))||'Testo importato';
     pause();resetReader();
-    if(await commitText(title,t,null,'txt')){openReading();toast('File importato','ok')}
+    if(await commitText(title,t,null,'txt',{asNew:true})){openReading();toast('File importato','ok')}
   }catch(e){toast('Impossibile leggere il file','err')}
 }
 $('pdfFile').addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';importFile(f)});
@@ -1490,11 +1590,14 @@ function onFontChange(v){S().font=Number(v)||16;persist();syncUI()}
 $('voiceSelect').addEventListener('change',saveSettings);
 function tryVoice(){
   if(!('speechSynthesis' in window)){toast('Sintesi vocale non disponibile','err');return}
-  const was=playing;if(was)pause();
-  speechSynthesis.cancel();
+  const was=playing;
+  if(was)pause();
+  try{speechSynthesis.cancel()}catch(e){}
   const u=new SpeechSynthesisUtterance('Ciao, questa è la voce che leggerà i tuoi testi.'),v=pickVoice();
   if(v){u.voice=v;u.lang=v.lang}else u.lang='it-IT';
-  u.rate=S().rate;u.pitch=S().pitch;window._u=u;speechSynthesis.speak(u);
+  u.rate=S().rate;u.pitch=S().pitch;
+  u.onend=()=>{if(was)play()};
+  window._u=u;speechSynthesis.speak(u);
 }
 
 /* ---------- Temi ---------- */
@@ -1508,15 +1611,18 @@ function applyTheme(){
   const b=document.body;b.dataset.theme=S().theme;
   if(S().mode==='auto')b.removeAttribute('data-mode');else b.dataset.mode=S().mode;
   $('modeItem').innerHTML='<span>'+(isDark()?'☀️':'🌙')+'</span>'+(isDark()?'Tema Chiaro':'Tema Scuro');
-  const c=getComputedStyle(b).getPropertyValue('--theme-color').trim(),m=document.querySelector('meta[name="theme-color"]');
-  if(c&&m)m.setAttribute('content',c);
+  const c=(getComputedStyle(b).getPropertyValue('--theme-color')||'').trim()||'#172554';
+  const m=document.querySelector('meta[name="theme-color"]');
+  if(m)m.setAttribute('content',c);
+  const sb=document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+  if(sb)sb.setAttribute('content',isDark()?'black-translucent':'default');
 }
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme);
 
 /* ---------- Avvio ---------- */
 $('yearNow').textContent=new Date().getFullYear();
 applyTheme();syncUI();renderContinue();renderList();updateMeta();updTmr();
-migrate().then(()=>{renderContinue();renderList()});
+migrate().then(()=>integrityCheck()).then(()=>{renderContinue();renderList()});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;loadVoices();setTimeout(loadVoices,800)}
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden)persist();

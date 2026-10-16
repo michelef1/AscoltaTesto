@@ -870,7 +870,7 @@ select{
 <section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>Dopo una pausa, la lettura riparte dall'inizio della frase corrente.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni puoi provare ogni voce.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
 <section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.5</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.6</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
 <section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
 <section class="sheet" id="sh-bm" role="dialog" aria-modal="true" aria-label="🔖 Segnalibri"><div class="grab"></div><div class="sh-h"><b>🔖 Segnalibri</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><button class="primary" id="bmAdd" style="width:100%;justify-content:center;margin-bottom:14px">＋ Aggiungi segnalibro qui</button><div id="bmList"></div></div></section>
 <section class="sheet" id="sh-pg" role="dialog" aria-modal="true" aria-label="📖 Vai a pagina"><div class="grab"></div><div class="sh-h"><b>📖 Vai a pagina</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" id="pgInfo" style="margin-top:0"></p><div class="row" style="flex-wrap:nowrap"><input id="pgNum" type="number" inputmode="numeric" min="1" placeholder="Numero di pagina" style="flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text)"><button class="primary" id="pgGo">Vai</button></div></div></section>
@@ -880,8 +880,8 @@ select{
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
-/* AscoltaTesto v1.5 */
-const APP_VERSION='1.5';
+/* AscoltaTesto v1.6 */
+const APP_VERSION='1.6';
 const KEY='ascoltatesto_v2';
 const THEMES=[
 {id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
@@ -924,7 +924,7 @@ async function migrate(){
   let ch=false;
   for(const t of data.texts){
     if(typeof t.text==='string'){
-      try{await DB.set(t.id,t.text);t.n=split(t.text).length;t.len=t.text.length;delete t.text;ch=true}catch(e){}
+      try{await DB.set(t.id,t.text);t.n=splitV1(t.text).length;t.len=t.text.length;delete t.text;ch=true}catch(e){}
     }
   }
   if(ch)persist();
@@ -1098,7 +1098,7 @@ async function commitText(title,text,po,kind,opts){
   if(isNew){cur={id:id,title:title,pos:0,updated:Date.now(),kind:kind||'paste'};data.texts.unshift(cur)}
   else{if(changed){cur.pos=0;delete cur.pg}cur.title=title;cur.updated=Date.now()}
   if(isNew||changed){
-    body=text;const arr=split(text);cur.n=arr.length;cur.len=text.length;
+    body=text;const arr=split(text);cur.n=arr.length;cur.len=text.length;cur.sv=SPLITV;
     if(po){const st=arr.map(x=>x.s);cur.pg=po.map(o=>{let a=0,b=st.length-1;while(a<b){const m=(a+b+1)>>1;if(st[m]<=o)a=m;else b=m-1}return a})}
   }
   data.lastId=cur.id;persist();return true;
@@ -1113,6 +1113,7 @@ async function openText(id){
   let b;try{b=await DB.get(id)}catch(e){}
   if(typeof b!=='string'){toast('Testo non trovato nella memoria','err');return}
   if(cur!==t)pause();
+  migrateSplit(t,b);
   cur=t;body=b;data.lastId=id;openReading();
 }
 function openReading(){
@@ -1127,7 +1128,39 @@ function backToEditor(){
 }
 
 /* ---------- Lettore ---------- */
+const SPLITV=2;
+/* Un punto NON chiude la frase se: sta dentro un numero o una sigla (10.000, 3.14, 12.03.2024, S.p.A., www.sito.it)
+   oppure chiude un'abbreviazione comune (dott., ecc., pag., art.) o è seguito da una lettera minuscola. Il punto viene sostituito da un carattere
+   segnaposto della stessa lunghezza, così le posizioni nel testo restano identiche. */
+function protect(t){
+  return t
+    .replace(/([^\s.!?…])\.(?=[0-9A-Za-zÀ-ÿ])/g,'$1\u0001')
+    .replace(/(^|[^A-Za-zÀ-ÿ])(sig|sigg|dott|dr|prof|ing|avv|arch|sen|ecc|es|pag|pp|cap|fig|vol|art|artt|tel|cfr|vs)\.(?=\s)/gi,(m,a,b)=>a+b+'\u0001')
+    .replace(/([^\s.!?…])\.(?=\s+[a-zà-ÿ])/g,'$1\u0001');
+}
 function split(txt){
+  const o=splitCore(protect(txt));
+  o.forEach(x=>{x.t=x.t.replace(/\u0001/g,'.')});
+  return o;
+}
+/* divisione usata fino alla v1.5: serve solo per riportare segnalibri, pagine e posizione dei testi già salvati */
+function splitV1(txt){return splitCore(txt)}
+function migrateSplit(t,b){
+  if(t.sv===SPLITV)return;
+  const oldS=splitV1(b),newS=split(b);
+  const toNew=i=>{
+    if(!oldS.length||!newS.length)return 0;
+    const off=oldS[Math.max(0,Math.min(i,oldS.length-1))].s;
+    let lo=0,hi=newS.length-1;
+    while(lo<hi){const m=(lo+hi+1)>>1;if(newS[m].s<=off)lo=m;else hi=m-1}
+    return lo;
+  };
+  t.pos=toNew(t.pos||0);
+  if(Array.isArray(t.pg))t.pg=t.pg.map(toNew);
+  if(Array.isArray(t.bm))t.bm.forEach(x=>{x.i=toNew(x.i)});
+  t.n=newS.length;t.sv=SPLITV;persist();
+}
+function splitCore(txt){
   txt=txt.replace(/\r/g,'');
   const o=[];
   for(const pm of txt.matchAll(/[^\n]+/g)){
@@ -1410,7 +1443,7 @@ function continueLast(){const t=lastText();if(t)openText(t.id)}
 async function exportJSON(){
   try{
     const texts=[];
-    for(const t of data.texts)texts.push({id:t.id,title:t.title,text:(await DB.get(t.id))||'',pos:t.pos||0,updated:t.updated,bm:t.bm,pg:t.pg,kind:t.kind});
+    for(const t of data.texts)texts.push({id:t.id,title:t.title,text:(await DB.get(t.id))||'',pos:t.pos||0,updated:t.updated,bm:t.bm,pg:t.pg,kind:t.kind,sv:t.sv});
     const blob=new Blob([JSON.stringify({app:'AscoltaTesto',version:APP_VERSION,exported:new Date().toISOString(),texts:texts})],{type:'application/json'});
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);
     a.download='ascoltatesto-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
@@ -1423,7 +1456,7 @@ $('importFile').addEventListener('change',async e=>{
   try{
     const o=JSON.parse(await f.text());
     if(!Array.isArray(o.texts))throw new Error('formato');
-    const clean=o.texts.filter(t=>t&&t.text).map((t,i)=>({id:String(t.id||Date.now()+'-'+i),title:t.title||'Testo importato',text:t.text,pos:t.pos||0,updated:t.updated||Date.now(),bm:Array.isArray(t.bm)?t.bm:undefined,pg:Array.isArray(t.pg)?t.pg:undefined,kind:t.kind||undefined}));
+    const clean=o.texts.filter(t=>t&&t.text).map((t,i)=>({id:String(t.id||Date.now()+'-'+i),title:t.title||'Testo importato',text:t.text,pos:t.pos||0,updated:t.updated||Date.now(),bm:Array.isArray(t.bm)?t.bm:undefined,pg:Array.isArray(t.pg)?t.pg:undefined,kind:t.kind||undefined,sv:t.sv||undefined}));
     const r=await ask({icon:'📥',title:'Importa testi',msg:'Trovati '+clean.length+' testi. Vuoi unirli a quelli attuali o sostituirli?',ok:'Unisci',alt:'Sostituisci'});
     if(r!=='ok'&&r!=='alt'){e.target.value='';return}
     let add=clean;
@@ -1441,7 +1474,7 @@ $('importFile').addEventListener('change',async e=>{
       for(const t of data.texts)if(!keep.has(t.id)){try{await DB.del(t.id)}catch(x){}}
       data.texts=[];data.lastId=null;
     }
-    add.forEach(t=>data.texts.push({id:t.id,title:t.title,pos:t.pos,updated:t.updated,n:split(t.text).length,len:t.text.length,bm:t.bm,pg:t.pg,kind:t.kind}));
+    add.forEach(t=>data.texts.push({id:t.id,title:t.title,pos:t.pos,updated:t.updated,n:(t.sv===SPLITV?split:splitV1)(t.text).length,len:t.text.length,bm:t.bm,pg:t.pg,kind:t.kind,sv:t.sv}));
     persist();renderList();renderContinue();toast('Importazione completata','ok');
   }catch(err){toast('File non valido','err')}
   e.target.value='';

@@ -1,4 +1,4 @@
-const CACHE = 'ascoltatesto-v1.1';
+const CACHE = 'ascoltatesto-v1.4';
 const ASSETS = [
   './',
   './index.html',
@@ -8,10 +8,12 @@ const ASSETS = [
   './icons/maskable-192.png',
   './icons/maskable-512.png'
 ];
+// pdf.js è pesante: se non si riesce a scaricarlo subito non blocca l'installazione
+const LIB = ['./lib/pdf.min.js', './lib/pdf.worker.min.js'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE).then(c => c.addAll(ASSETS).then(() => Promise.all(LIB.map(u => c.add(u).catch(() => {}))))).then(() => self.skipWaiting())
   );
 });
 
@@ -31,8 +33,10 @@ self.addEventListener('fetch', e => {
     e.respondWith(
       fetch(request)
         .then(res => {
-          const copy = res.clone();
-          caches.open(CACHE).then(c => c.put(request, copy));
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then(c => c.put(request, copy));
+          }
           return res;
         })
         .catch(() => caches.match(request).then(r => r || caches.match('./index.html')))
@@ -44,8 +48,11 @@ self.addEventListener('fetch', e => {
     caches.match(request).then(cached => {
       if (cached) return cached;
       return fetch(request).then(res => {
-        const copy = res.clone();
-        caches.open(CACHE).then(c => c.put(request, copy));
+        // si salvano solo risposte valide: un 404 in cache bloccherebbe il file anche dopo averlo caricato
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(CACHE).then(c => c.put(request, copy));
+        }
         return res;
       }).catch(() => cached);
     })

@@ -627,6 +627,23 @@ select{
 .readerText p{margin:0 0 1em}
 .readerText span.rd{opacity:.5}
 .toast{display:flex;align-items:center;gap:10px;border-radius:999px;padding:12px 20px;z-index:70;transition:opacity .25s,transform .35s cubic-bezier(.2,.9,.3,1.2)}
+.pdfdrop{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;padding:16px;border:2px dashed var(--line);border-radius:16px;color:var(--muted);cursor:pointer;font-weight:600;text-align:center;transition:border-color .2s,background .2s,color .2s}
+.pdfdrop:hover,.pdfdrop.over{border-color:var(--primary);color:var(--text);background:var(--soft)}
+.pdfdrop small{display:block;font-weight:400;font-size:12.5px;margin-top:2px}
+.seg{display:flex;gap:6px;padding:4px;background:var(--soft);border-radius:14px;margin:0 0 14px}
+.seg button{flex:1;padding:10px 8px;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted)}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.bm{display:flex;gap:8px;align-items:stretch;margin-bottom:8px}
+.bmmain{flex:1;min-width:0;text-align:left;padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);color:var(--text)}
+.bmmain strong{display:block;font-size:14px}
+.bmmain span{display:block;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bmdel{width:44px;border-radius:14px;background:var(--soft);color:var(--muted)}
+.grp{display:flex;align-items:center;gap:8px;margin:22px 0 4px;font-size:14px;letter-spacing:.02em}
+.grp:first-child{margin-top:6px}
+.grp span{background:var(--soft);color:var(--muted);border-radius:999px;padding:1px 9px;font-size:12px;font-weight:700}
+.pgmark{display:flex;align-items:center;gap:10px;margin:20px 0 12px;color:var(--muted);font:700 11.5px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;user-select:none}
+.pgmark::before,.pgmark::after{content:'';flex:1;border-top:1px solid var(--line)}
+.pgbadge{display:inline-block;margin:6px 0 2px;padding:4px 12px;border-radius:999px;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;font-weight:700;font-size:13px}
 @media (prefers-reduced-motion:reduce){.menu,.sheet,.dbox,.toast,.ov,.dlg{transition:none!important}}
 
 </style>
@@ -738,12 +755,14 @@ select{
     <div id="editorView" class="card">
       <div class="row spread">
         <div style="min-width:0">
-          <h2 style="margin:0;font-size:22px">Nuovo testo</h2>
+          <h2 id="edTitle" style="margin:0;font-size:22px">Nuovo testo</h2>
           <p class="muted" style="margin:4px 0 0;font-size:13.5px">Incolla qui il testo da ascoltare.</p>
         </div>
         <button class="secondary" onclick="showPage('texts')">← Indietro</button>
       </div>
       <input id="titleInput" placeholder="Titolo del testo" style="width:100%;margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:44px">
+      <div class="seg" id="segBar" role="tablist"><button id="tabTxt" class="on" onclick="setMode('text')">✍️ Incolla testo</button><button id="tabFile" onclick="setMode('file')">📄 Da file (PDF, TXT)</button></div>
+      <div id="paneText">
       <textarea id="textInput" class="textarea" placeholder="Incolla o scrivi qui il testo..." oninput="updateMeta()"></textarea>
       <div class="meta-row">
         <span id="metaInfo">0 parole · 0 caratteri · ~0 min</span>
@@ -753,17 +772,19 @@ select{
         <button class="secondary" onclick="showPage('texts')">Annulla</button>
         <button class="primary" onclick="saveAndRead()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Salva e ascolta
+          <span id="saveLbl">Salva e apri</span>
         </button>
       </div>
+      </div>
+      <div id="paneFile" style="display:none"><label class="pdfdrop" id="pdfDrop" style="margin-top:0"><input type="file" id="pdfFile" accept=".pdf,.txt,application/pdf,text/plain" hidden><span style="font-size:30px">📄</span><span>Carica un file<small>PDF o TXT · anche un libro intero · elaborato sul telefono</small></span></label><div id="pdfProg" style="display:none;margin-top:6px"><div class="row spread" style="flex-wrap:nowrap"><strong id="pdfName" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></strong><button class="secondary" onclick="cancelPdf()">Annulla</button></div><div class="progress" style="margin-top:12px"><i id="pdfBar" style="width:0%"></i></div><small id="pdfStat" class="muted"></small></div><p class="muted" style="font-size:12.5px;margin:14px 0 0">Il PDF deve contenere testo vero: le scansioni fatte di sole immagini non si possono leggere. Intestazioni e numeri di pagina vengono tolti da soli.</p></div>
     </div>
 
     <div id="readingView" class="reader" style="display:none">
       <div class="readerTop">
         <div class="row spread">
           <div style="min-width:0;flex:1">
-            <h2 id="readingTitle" style="margin:0;font-size:19px">Testo</h2>
-            <small id="readingStatus" class="muted"></small>
+            <div style="display:flex;align-items:center;gap:4px;min-width:0"><h2 id="readingTitle" style="margin:0;font-size:19px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Testo</h2><button class="linkbtn" onclick="renameCurrent()" aria-label="Rinomina il testo" style="font-size:16px">✏️</button></div>
+            <div id="pgBadge" class="pgbadge" style="display:none"></div><br><small id="readingStatus" class="muted"></small>
           </div>
           <button class="secondary" onclick="backToEditor()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
@@ -794,6 +815,7 @@ select{
           <button class="linkbtn" id="timerBtn" onclick="openSheet('tmr')">⏱️ Timer</button>
           <button class="linkbtn" id="speedLabel" onclick="cycleSpeed()" aria-label="Cambia velocità">1,0×</button>
         </div>
+        <div class="row" style="justify-content:center;gap:6px;margin-top:2px;flex-wrap:wrap"><button class="linkbtn" onclick="openSheet('bm')">🔖 Segnalibri</button><button class="linkbtn" id="pgBtn" style="display:none" onclick="openSheet('pg')">📖 Vai a pagina</button><button class="linkbtn" onclick="exportTxt()">⬇️ Esporta TXT</button></div>
       </div>
     </div>
   </section>
@@ -840,22 +862,25 @@ select{
       </div>
 
       <div class="setting" style="margin-top:12px"><label><input type="checkbox" id="wakeChk" onchange="saveSettings()"> Tieni lo schermo acceso durante l'ascolto</label><button class="secondary" style="margin-top:8px" onclick="tryVoice()">Prova voce</button></div>
+<div class="setting" style="margin-top:12px"><label for="lhSel">Interlinea</label><select id="lhSel" onchange="onLhChange(this.value)"><option value="1.55">Stretta</option><option value="1.8">Standard</option><option value="2.1">Ampia</option></select></div>
 <h3 style="margin-top:22px;margin-bottom:10px">Tema</h3>
       <div class="themes" id="themesGrid"></div>
     </div></section>
-<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>Dopo una pausa, la lettura riparte dall'inizio della frase corrente.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni puoi provare ogni voce.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
+<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>Dopo una pausa, la lettura riparte dall'inizio della frase corrente.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni puoi provare ogni voce.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
 <section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.1</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.4</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
 <section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
-<div class="dlg" id="dlg" role="alertdialog" aria-modal="true" aria-labelledby="dtt"><div class="dbox"><div class="dic" id="dic"></div><h3 id="dtt"></h3><p id="dmg"></p><div class="dbtn"><button class="primary" id="dok">OK</button><button class="secondary" id="dalt" style="display:none"></button><button class="secondary" id="dcn">Annulla</button></div></div></div>
+<section class="sheet" id="sh-bm" role="dialog" aria-modal="true" aria-label="🔖 Segnalibri"><div class="grab"></div><div class="sh-h"><b>🔖 Segnalibri</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><button class="primary" id="bmAdd" style="width:100%;justify-content:center;margin-bottom:14px">＋ Aggiungi segnalibro qui</button><div id="bmList"></div></div></section>
+<section class="sheet" id="sh-pg" role="dialog" aria-modal="true" aria-label="📖 Vai a pagina"><div class="grab"></div><div class="sh-h"><b>📖 Vai a pagina</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" id="pgInfo" style="margin-top:0"></p><div class="row" style="flex-wrap:nowrap"><input id="pgNum" type="number" inputmode="numeric" min="1" placeholder="Numero di pagina" style="flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text)"><button class="primary" id="pgGo">Vai</button></div></div></section>
+<div class="dlg" id="dlg" role="alertdialog" aria-modal="true" aria-labelledby="dtt"><div class="dbox"><div class="dic" id="dic"></div><h3 id="dtt"></h3><p id="dmg"></p><input id="dinp" type="text" style="display:none;width:100%;margin:0 0 16px;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text);font-size:16px"><div class="dbtn"><button class="primary" id="dok">OK</button><button class="secondary" id="dalt" style="display:none"></button><button class="secondary" id="dcn">Annulla</button></div></div></div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
 /* AscoltaTesto v1.1 */
-const APP_VERSION='1.1';
+const APP_VERSION='1.4';
 const KEY='ascoltatesto_v2';
 const THEMES=[
 {id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
@@ -864,15 +889,16 @@ const THEMES=[
 {id:'foresta',label:'Foresta',sub:'Naturale',colors:['#064e3b','#059669','#0d9488']},
 {id:'rosa',label:'Rosa',sub:'Morbido',colors:['#831843','#ec4899','#a855f7']},
 {id:'mono',label:'Mono',sub:'Elegante',colors:['#18181b','#3f3f46','#52525b']}];
-const DEF={voice:'',rate:1,pitch:1,font:16,theme:'blunotte',mode:'auto',wake:true};
+const DEF={voice:'',rate:1,pitch:1,font:16,lh:1.8,theme:'blunotte',mode:'auto',wake:true};
 const IC={
+edit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
 play:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
 trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>'};
 const $=id=>document.getElementById(id);
 const fmt=n=>Number(n).toFixed(1).replace('.',',');
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 
-let cur=null,sn=[],idx=0,playing=false,done=false,tok=0,lock=null,voices=[],page='home',curSheet=null,dlgRes=null,dp=null,st;
+let cur=null,sn=[],idx=0,playing=false,done=false,tok=0,lock=null,voices=[],page='home',curSheet=null,dlgRes=null,dp=null,st,body='',spans=[],lastIdx=-1,pdfReady=null,pdfCancel=false,pgl=null,marks=[],progScroll=0;
 
 /* ---------- Dati ---------- */
 function load(){
@@ -885,6 +911,23 @@ function load(){
 }
 let data=load();
 const S=()=>data.settings;
+const DB={
+  db:null,
+  open(){return this.db?Promise.resolve(this.db):new Promise((res,rej)=>{const r=indexedDB.open('ascoltatesto',1);r.onupgradeneeded=()=>r.result.createObjectStore('b');r.onsuccess=()=>{this.db=r.result;res(r.result)};r.onerror=()=>rej(r.error)})},
+  async run(mode,fn){const db=await this.open();return new Promise((res,rej)=>{const tx=db.transaction('b',mode),q=fn(tx.objectStore('b'));tx.oncomplete=()=>res(q.result);tx.onerror=()=>rej(tx.error);tx.onabort=()=>rej(tx.error)})},
+  get(id){return this.run('readonly',s=>s.get(id))},
+  set(id,v){return this.run('readwrite',s=>s.put(v,id))},
+  del(id){return this.run('readwrite',s=>s.delete(id))}
+};
+async function migrate(){
+  let ch=false;
+  for(const t of data.texts){
+    if(typeof t.text==='string'){
+      try{await DB.set(t.id,t.text);t.n=split(t.text).length;t.len=t.text.length;delete t.text;ch=true}catch(e){}
+    }
+  }
+  if(ch)persist();
+}
 function persist(){clearTimeout(st);try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){toast('Spazio esaurito: elimina qualche testo','err')}}
 function persistSoon(){clearTimeout(st);st=setTimeout(persist,700)}
 function toast(m,k){
@@ -897,14 +940,17 @@ function toast(m,k){
 /* ---------- Dialoghi ---------- */
 function ask(o){
   $('dic').textContent=o.icon||'❔';$('dtt').textContent=o.title||'';$('dmg').textContent=o.msg||'';
-  const ok=$('dok');ok.textContent=o.ok||'OK';ok.classList.toggle('dng',!!o.danger);
+  const inp=$('dinp');inp.style.display=o.input?'':'none';if(o.input){inp.value=o.input.value||'';inp.placeholder=o.input.placeholder||''}
+  const ok=$('dok');ok.textContent=o.ok||'OK';ok.classList.toggle('dng',!!o.danger);ok.style.display=o.noOk?'none':'';
   $('dalt').style.display=o.alt?'':'none';$('dalt').textContent=o.alt||'';
-  $('dcn').style.display=o.cancel===false?'none':'';
-  $('dlg').classList.add('on');ok.focus();
+  $('dcn').style.display=o.cancel===false?'none':'';$('dcn').textContent=o.cancelText||'Annulla';
+  $('dlg').classList.add('on');
+  if(o.input)setTimeout(()=>{inp.focus();inp.select()},80);else ok.focus();
   return new Promise(r=>{dlgRes=r});
 }
 function dlgDone(v){$('dlg').classList.remove('on');if(dlgRes){const r=dlgRes;dlgRes=null;r(v)}}
-$('dok').onclick=()=>dlgDone('ok');
+$('dok').onclick=()=>{if($('dinp').style.display!=='none'){const v=$('dinp').value.trim();dlgDone(v||false)}else dlgDone('ok')};
+$('dinp').addEventListener('keydown',e=>{if(e.key==='Enter')$('dok').click()});
 $('dalt').onclick=()=>dlgDone('alt');
 $('dcn').onclick=()=>dlgDone(false);
 $('dlg').onclick=e=>{if(e.target.id==='dlg')dlgDone(false)};
@@ -938,6 +984,8 @@ function openSheet(n){
   curSheet=$('sh-'+n);if(!curSheet)return;
   if(n==='set'){loadVoices();syncUI();renderThemes()}
   if(n==='tmr')renderTmr();
+  if(n==='bm')renderBm();
+  if(n==='pg'){const L=pgl?pgl.length:0;$('pgInfo').textContent=(cur&&cur.pg?"Il PDF ha "+L+" pagine":"Pagine stimate (circa 2000 caratteri ciascuna): "+L)+". Ora sei a pagina "+pageOf(idx)+".";$('pgNum').value='';$('pgNum').max=L}
   ov.classList.add('on');curSheet.classList.add('open');
 }
 function closeSheet(){
@@ -987,65 +1035,122 @@ function updateMeta(){
   $('metaInfo').textContent=w+' parole · '+t.length+' caratteri · ~'+Math.ceil(w/180)+' min';
 }
 function resetReader(){
-  cur=null;sn=[];
+  cur=null;sn=[];body='';spans=[];lastIdx=-1;
   $('editorView').style.display='block';$('readingView').style.display='none';
   $('titleInput').value='';$('textInput').value='';updateMeta();
 }
-function newText(){pause();resetReader();showPage('reader');setTimeout(()=>$('titleInput').focus(),200)}
-function saveAndRead(){
+function setMode(m){
+  $('paneText').style.display=m==='text'?'':'none';$('paneFile').style.display=m==='file'?'':'none';
+  $('tabTxt').classList.toggle('on',m==='text');$('tabFile').classList.toggle('on',m==='file');
+}
+function newText(){pause();resetReader();setMode('text');$('segBar').style.display='';$('saveLbl').textContent='Salva e apri';$('edTitle').textContent='Nuovo testo';showPage('reader');setTimeout(()=>$('titleInput').focus(),200)}
+async function commitText(title,text,po,kind){
+  const isNew=!cur,changed=!isNew&&body!==text,id=isNew?Date.now().toString():cur.id;
+  if(isNew||changed){
+    try{await DB.set(id,text)}catch(e){toast('Impossibile salvare: memoria del browser non disponibile','err');return false}
+  }
+  if(isNew){cur={id:id,title:title,pos:0,updated:Date.now(),kind:kind||'paste'};data.texts.unshift(cur)}
+  else{if(changed){cur.pos=0;delete cur.pg}cur.title=title;cur.updated=Date.now()}
+  if(isNew||changed){
+    body=text;const arr=split(text);cur.n=arr.length;cur.len=text.length;
+    if(po){const st=arr.map(x=>x.s);cur.pg=po.map(o=>{let a=0,b=st.length-1;while(a<b){const m=(a+b+1)>>1;if(st[m]<=o)a=m;else b=m-1}return a})}
+  }
+  data.lastId=cur.id;persist();return true;
+}
+async function saveAndRead(){
   const text=$('textInput').value.trim();
   if(!text){toast('Inserisci prima un testo','err');return}
-  const title=$('titleInput').value.trim()||'Testo senza titolo';
-  if(cur){if(cur.text!==text){cur.text=text;cur.pos=0}cur.title=title;cur.updated=Date.now()}
-  else{cur={id:Date.now().toString(),title:title,text:text,pos:0,updated:Date.now()};data.texts.unshift(cur)}
-  data.lastId=cur.id;persist();openReading();toast('Testo salvato','ok');
+  if(await commitText($('titleInput').value.trim()||'Testo senza titolo',text)){openReading();toast('Testo salvato','ok')}
 }
-function openText(id){
+async function openText(id){
   const t=data.texts.find(x=>x.id===id);if(!t)return;
+  let b;try{b=await DB.get(id)}catch(e){}
+  if(typeof b!=='string'){toast('Testo non trovato nella memoria','err');return}
   if(cur!==t)pause();
-  cur=t;data.lastId=id;
-  $('titleInput').value=t.title;$('textInput').value=t.text;updateMeta();openReading();
+  cur=t;body=b;data.lastId=id;openReading();
 }
 function openReading(){
   $('editorView').style.display='none';$('readingView').style.display='block';
   $('readingTitle').textContent=cur.title;renderReader();showPage('reader');
 }
-function backToEditor(){pause();$('editorView').style.display='block';$('readingView').style.display='none';showPage('reader')}
+function backToEditor(){pause();setMode('text');$('segBar').style.display='none';$('saveLbl').textContent='Salva modifiche';$('edTitle').textContent='Modifica testo';$('titleInput').value=cur?cur.title:'';$('textInput').value=body;updateMeta();$('editorView').style.display='block';$('readingView').style.display='none';showPage('reader')}
 
 /* ---------- Lettore ---------- */
 function split(txt){
+  txt=txt.replace(/\r/g,'');
   const o=[];
-  txt.replace(/\r/g,'').split(/\n+/).forEach(p=>{
-    let first=true;
-    (p.match(/[^.!?…]+(?:[.!?…]+["»”')\]]*|$)\s*/g)||[]).forEach(s=>{
-      s=s.trim();
-      while(s.length>220){let k=s.lastIndexOf(',',220);if(k<80)k=s.lastIndexOf(' ',220);if(k<1)k=220;o.push({t:s.slice(0,k+1).trim(),p:first});first=false;s=s.slice(k+1).trim()}
-      if(s){o.push({t:s,p:first});first=false}
-    });
-  });
+  for(const pm of txt.matchAll(/[^\n]+/g)){
+    const base=pm.index;let first=true;
+    for(const m of pm[0].matchAll(/[^.!?…]+(?:[.!?…]+["»”')\]]*|$)\s*/g)){
+      let s=m[0],st=base+m.index;
+      st+=s.length-s.trimStart().length;s=s.trim();
+      while(s.length>220){
+        let k=s.lastIndexOf(',',220);if(k<80)k=s.lastIndexOf(' ',220);if(k<1)k=220;
+        o.push({t:s.slice(0,k+1).trim(),p:first,s:st});first=false;
+        const rest=s.slice(k+1);st+=k+1+(rest.length-rest.trimStart().length);s=rest.trim();
+      }
+      if(s){o.push({t:s,p:first,s:st});first=false}
+    }
+  }
   return o;
 }
-const CN=new Map();
-function count(t){const k=t.id+':'+t.text.length;if(!CN.has(k))CN.set(k,split(t.text).length);return CN.get(k)}
-function pctOf(t){return Math.round((t.pos||0)/Math.max(count(t)-1,1)*100)}
+function pctOf(t){return Math.round((t.pos||0)/Math.max((t.n||1)-1,1)*100)}
+function pageOf(i){
+  const pg=pgl;if(!pg||!pg.length)return 0;
+  let a=0,b=pg.length-1;while(a<b){const m=(a+b+1)>>1;if(pg[m]<=i)a=m;else b=m-1}
+  return a+1;
+}
+function virtPages(){
+  if(body.length<4000)return null;
+  const out=[0];let next=2000;
+  for(let i=0;i<sn.length;i++){if(sn[i].s>=next){out.push(i);next=(Math.floor(sn[i].s/2000)+1)*2000}}
+  return out.length>1?out:null;
+}
+function setBadge(p){
+  const b=$('pgBadge');
+  if(!pgl||!cur){b.style.display='none';return}
+  b.style.display='';b.textContent=(cur.pg?'📄 Pagina ':'📖 Pagina ~')+p+' / '+(cur.pg?'':'~')+pgl.length;
+}
+function visiblePage(){
+  const top=$('readerText').getBoundingClientRect().top+30;
+  let lo=0,hi=marks.length-1,a=-1;
+  while(lo<=hi){const m=(lo+hi)>>1;if(marks[m].getBoundingClientRect().top<=top){a=m;lo=m+1}else hi=m-1}
+  return a<0?1:+marks[a].dataset.pg;
+}
+let scTick=false;
+$('readerText').addEventListener('scroll',()=>{
+  if(scTick||!cur||!pgl||Date.now()-progScroll<900)return;
+  scTick=true;requestAnimationFrame(()=>{scTick=false;setBadge(visiblePage())});
+},{passive:true});
 function renderReader(){
-  sn=split(cur.text);idx=Math.max(0,Math.min(cur.pos||0,sn.length-1));done=false;
+  sn=split(body);idx=Math.max(0,Math.min(cur.pos||0,sn.length-1));done=false;
+  pgl=cur.pg||virtPages();
+  const at=new Map();if(pgl)pgl.forEach((si,k)=>at.set(si,k+1));
   let h='',o=false;
-  sn.forEach((s,i)=>{if(s.p){if(o)h+='</p>';h+='<p>';o=true}h+='<span data-i="'+i+'">'+esc(s.t)+'</span> '});
-  $('readerText').innerHTML=h+'</p>';applyFont();mark(true);
+  sn.forEach((s,i)=>{
+    const pn=at.get(i);
+    if(pn){if(o)h+='</p>';h+='<div class="pgmark" data-pg="'+pn+'">'+(cur.pg?'Pagina '+pn:'Pagina ~'+pn)+'</div><p>';o=true}
+    else if(s.p){if(o)h+='</p>';h+='<p>';o=true}
+    h+='<span data-i="'+i+'">'+esc(s.t)+'</span> ';
+  });
+  $('readerText').innerHTML=h+'</p>';
+  spans=Array.from($('readerText').querySelectorAll('span'));marks=Array.from($('readerText').querySelectorAll('.pgmark'));
+  lastIdx=-1;$('pgBtn').style.display=pgl?'':'none';applyFont();mark(true);
 }
 $('readerText').addEventListener('click',e=>{const i=e.target.dataset&&e.target.dataset.i;if(i!==undefined)jumpTo(+i)});
 function mark(center){
-  const sp=$('readerText').querySelectorAll('span');
-  sp.forEach((e,i)=>{e.className=i<idx?'rd':i===idx?'current':''});
+  const sp=spans;
+  if(lastIdx>=0&&idx===lastIdx+1&&sp[lastIdx]&&sp[idx]){sp[lastIdx].className='rd';sp[idx].className='current'}
+  else sp.forEach((e,i)=>{e.className=i<idx?'rd':i===idx?'current':''});
+  lastIdx=idx;
   const el=sp[idx];
   if(el&&(center||playing)){
     const b=$('readerText'),r=el.getBoundingClientRect(),q=b.getBoundingClientRect();
-    b.scrollTo({top:b.scrollTop+(r.top-q.top)-b.clientHeight/2+r.height/2,behavior:center?'auto':'smooth'});
+    progScroll=Date.now();b.scrollTo({top:b.scrollTop+(r.top-q.top)-b.clientHeight/2+r.height/2,behavior:center?'auto':'smooth'});
   }
   const n=sn.length,pct=Math.round(idx/Math.max(n-1,1)*100);
   $('readProgress').style.width=pct+'%';$('seek').value=pct;
-  $('readingStatus').textContent='Frase '+(idx+1)+' di '+n+' · '+pct+'%';
+  $('readingStatus').textContent=(pgl?'Pagina '+(cur.pg?'':'~')+pageOf(idx)+' di '+(cur.pg?'':'~')+pgl.length:'Frase '+(idx+1)+' di '+n)+' · '+pct+'%';setBadge(pageOf(idx));
   cur.pos=idx;cur.updated=Date.now();data.lastId=cur.id;persistSoon();
 }
 function pickVoice(){return voices.find(v=>v.name===S().voice)||voices.find(v=>/^it/i.test(v.lang))||voices[0]||null}
@@ -1106,6 +1211,45 @@ function cycleSpeed(){
   S().rate=r[(k+1)%r.length];persist();syncUI();if(playing)speak(idx);
 }
 
+/* ---------- Segnalibri, pagine, export TXT ---------- */
+function renderBm(){
+  const l=(cur&&cur.bm)||[];
+  $('bmList').innerHTML=l.length?l.map(b=>'<div class="bm"><button class="bmmain" data-i="'+b.i+'"><strong>'+(pgl?'Pagina '+(cur.pg?'':'~')+pageOf(b.i):'Frase '+(b.i+1))+'</strong><span>'+esc(b.snip)+'</span></button><button class="bmdel" data-id="'+b.id+'" aria-label="Elimina segnalibro">✕</button></div>').join(''):'<p class="muted">Nessun segnalibro. Tocca "Aggiungi" per salvare il punto in cui sei.</p>';
+}
+function addBm(){
+  if(!cur)return;
+  cur.bm=cur.bm||[];
+  if(cur.bm.some(b=>b.i===idx)){toast('Hai già un segnalibro qui');return}
+  cur.bm.unshift({id:Date.now(),i:idx,snip:sn[idx]?sn[idx].t.slice(0,90):''});
+  persist();renderBm();toast('Segnalibro aggiunto','ok');
+}
+$('bmAdd').onclick=addBm;
+$('bmList').addEventListener('click',e=>{
+  const d=e.target.closest('.bmdel'),m=e.target.closest('.bmmain');
+  if(d){cur.bm=cur.bm.filter(b=>String(b.id)!==d.dataset.id);persist();renderBm()}
+  else if(m){closeSheet();jumpTo(+m.dataset.i)}
+});
+function goPage(){
+  if(!cur||!pgl)return;
+  const v=parseInt($('pgNum').value,10);
+  if(!v){toast('Scrivi il numero di pagina','err');return}
+  closeSheet();jumpTo(pgl[Math.min(pgl.length,v)-1]);
+}
+$('pgGo').onclick=goPage;
+$('pgNum').addEventListener('keydown',e=>{if(e.key==='Enter')goPage()});
+function exportTxt(){
+  if(!cur)return;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain;charset=utf-8'}));
+  a.download=(cur.title.replace(/[\\\/:*?"<>|]+/g,'_').trim().slice(0,70)||'testo')+'.txt';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Testo esportato','ok');
+}
+document.addEventListener('keydown',e=>{
+  if(e.target.matches('input,textarea,select,button')||page!=='reader'||!cur||$('readingView').style.display==='none')return;
+  if(e.code==='Space'){e.preventDefault();toggleSpeech()}
+  else if(e.key==='ArrowRight')skip(1);
+  else if(e.key==='ArrowLeft')skip(-1);
+});
+
 /* ---------- Timer ---------- */
 const TM=[0,15,30,60];let ti=0,sleepT=null;
 function updTmr(){$('timerBtn').textContent='⏱️ '+(TM[ti]?TM[ti]+' min':'Timer')}
@@ -1121,6 +1265,11 @@ $('topts').addEventListener('click',e=>{
 });
 
 /* ---------- Archivio ---------- */
+const kindOf=t=>t.kind||(t.pg?'pdf':'text');
+function itemHtml(t){
+  const p=pctOf(t);
+  return '<div class="textitem"><div style="min-width:0;flex:1"><strong>'+esc(t.title)+'</strong><small>'+p+'% · '+(t.n||'…')+' frasi'+(t.pg?' · '+t.pg.length+' pagine':'')+'</small><div class="progress" style="margin-top:8px"><i style="width:'+p+'%"></i></div></div><div class="row" style="flex-wrap:nowrap;gap:6px"><button class="secondary icon-only" onclick="openText(\''+t.id+'\')" aria-label="Apri">'+IC.play+'</button><button class="secondary icon-only" onclick="renameText(\''+t.id+'\')" aria-label="Rinomina">'+IC.edit+'</button><button class="secondary icon-only danger" onclick="deleteText(\''+t.id+'\')" aria-label="Elimina">'+IC.trash+'</button></div></div>';
+}
 function renderList(){
   const box=$('textList'),q=($('searchInput').value||'').toLowerCase().trim();
   const list=data.texts.filter(t=>!q||t.title.toLowerCase().includes(q));
@@ -1128,16 +1277,27 @@ function renderList(){
     box.innerHTML='<div class="empty"><p>'+(q?'Nessun risultato.':'Non hai ancora salvato testi.')+'</p>'+(q?'':'<button class="primary" onclick="newText()" style="margin-top:10px">Crea il primo testo</button>')+'</div>';
     return;
   }
-  box.innerHTML=list.map(t=>{
-    const p=pctOf(t);
-    return '<div class="textitem"><div style="min-width:0;flex:1"><strong>'+esc(t.title)+'</strong><small>'+p+'% · '+count(t)+' frasi</small><div class="progress" style="margin-top:8px"><i style="width:'+p+'%"></i></div></div><div class="row" style="flex-wrap:nowrap"><button class="secondary icon-only" onclick="openText(\''+t.id+'\')" aria-label="Apri">'+IC.play+'</button><button class="secondary icon-only danger" onclick="deleteText(\''+t.id+'\')" aria-label="Elimina">'+IC.trash+'</button></div></div>';
+  const G=[['pdf','📄 PDF'],['text','✍️ Testi incollati e TXT']];
+  box.innerHTML=G.map(g=>{
+    const a=list.filter(t=>(kindOf(t)==='pdf')===(g[0]==='pdf'));
+    return a.length?'<h3 class="grp">'+g[1]+' <span>'+a.length+'</span></h3>'+a.map(itemHtml).join(''):'';
   }).join('');
 }
+async function renameText(id){
+  const t=data.texts.find(x=>x.id===id);if(!t)return;
+  const v=await ask({icon:'✏️',title:'Rinomina il testo',msg:'Scegli un nuovo titolo.',ok:'Salva',input:{value:t.title,placeholder:'Titolo del testo'}});
+  if(!v)return;
+  t.title=v;t.updated=Date.now();persist();renderList();renderContinue();
+  if(cur===t)$('readingTitle').textContent=v;
+  toast('Titolo salvato','ok');
+}
+function renameCurrent(){if(cur)renameText(cur.id)}
 async function deleteText(id){
   const t=data.texts.find(x=>x.id===id);if(!t)return;
   const r=await ask({icon:'🗑️',title:'Eliminare il testo?',msg:'«'+t.title+'» verrà rimosso da questo dispositivo.',ok:'Elimina',danger:true});
   if(!r)return;
   if(cur===t){pause();resetReader()}
+  try{await DB.del(id)}catch(e){}
   data.texts=data.texts.filter(x=>x!==t);
   if(data.lastId===id)data.lastId=null;
   persist();renderList();renderContinue();toast('Testo eliminato','ok');
@@ -1152,11 +1312,15 @@ function renderContinue(){
 function continueLast(){const t=lastText();if(t)openText(t.id)}
 
 /* ---------- Esporta / Importa ---------- */
-function exportJSON(){
-  const blob=new Blob([JSON.stringify({app:'AscoltaTesto',version:APP_VERSION,exported:new Date().toISOString(),texts:data.texts},null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='ascoltatesto-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Backup esportato','ok');
+async function exportJSON(){
+  try{
+    const texts=[];
+    for(const t of data.texts)texts.push({id:t.id,title:t.title,text:(await DB.get(t.id))||'',pos:t.pos||0,updated:t.updated,bm:t.bm,pg:t.pg,kind:t.kind});
+    const blob=new Blob([JSON.stringify({app:'AscoltaTesto',version:APP_VERSION,exported:new Date().toISOString(),texts:texts})],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='ascoltatesto-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Backup esportato','ok');
+  }catch(e){toast('Esportazione non riuscita','err')}
 }
 function importJSON(){$('importFile').click()}
 $('importFile').addEventListener('change',async e=>{
@@ -1164,21 +1328,134 @@ $('importFile').addEventListener('change',async e=>{
   try{
     const o=JSON.parse(await f.text());
     if(!Array.isArray(o.texts))throw new Error('formato');
-    const clean=o.texts.filter(t=>t&&t.text).map((t,i)=>({id:String(t.id||Date.now()+'-'+i),title:t.title||'Testo importato',text:t.text,pos:t.pos||0,updated:t.updated||Date.now()}));
+    const clean=o.texts.filter(t=>t&&t.text).map((t,i)=>({id:String(t.id||Date.now()+'-'+i),title:t.title||'Testo importato',text:t.text,pos:t.pos||0,updated:t.updated||Date.now(),bm:Array.isArray(t.bm)?t.bm:undefined,pg:Array.isArray(t.pg)?t.pg:undefined,kind:t.kind||undefined}));
     const r=await ask({icon:'📥',title:'Importa testi',msg:'Trovati '+clean.length+' testi. Vuoi unirli a quelli attuali o sostituirli?',ok:'Unisci',alt:'Sostituisci'});
     if(!r){e.target.value='';return}
+    let add=clean;
     if(r==='alt'){
       const c=await ask({icon:'⚠️',title:'Sostituire tutto?',msg:'I testi attuali verranno cancellati.',ok:'Sostituisci',danger:true});
       if(!c){e.target.value='';return}
-      pause();resetReader();data.texts=clean;data.lastId=null;
     }else{
       const ex=new Set(data.texts.map(t=>t.id));
-      clean.forEach(t=>{if(!ex.has(t.id))data.texts.push(t)});
+      add=clean.filter(t=>!ex.has(t.id));
     }
+    for(const t of add)await DB.set(t.id,t.text);
+    if(r==='alt'){
+      pause();resetReader();
+      const keep=new Set(clean.map(t=>t.id));
+      for(const t of data.texts)if(!keep.has(t.id)){try{await DB.del(t.id)}catch(x){}}
+      data.texts=[];data.lastId=null;
+    }
+    add.forEach(t=>data.texts.push({id:t.id,title:t.title,pos:t.pos,updated:t.updated,n:split(t.text).length,len:t.text.length,bm:t.bm,pg:t.pg,kind:t.kind}));
     persist();renderList();renderContinue();toast('Importazione completata','ok');
   }catch(err){toast('File non valido','err')}
   e.target.value='';
 });
+
+/* ---------- Importa PDF ---------- */
+const CDN='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+function addScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>{s.remove();rej(new Error('script'))};document.head.appendChild(s)})}
+function loadPdfJs(){
+  if(window.pdfjsLib&&pdfjsLib.GlobalWorkerOptions.workerSrc)return Promise.resolve();
+  return pdfReady||(pdfReady=(async()=>{
+    let base='./lib/';
+    try{await addScript(base+'pdf.min.js')}catch(e){base=CDN;await addScript(base+'pdf.min.js')}
+    let w=base+'pdf.worker.min.js';
+    try{const c=new AbortController(),r=await fetch(w,{signal:c.signal});c.abort();if(!r.ok)throw 0}catch(e){w=CDN+'pdf.worker.min.js'}
+    pdfjsLib.GlobalWorkerOptions.workerSrc=w;
+  })().catch(()=>{pdfReady=null;throw new Error('motore')}));
+}
+const norm=s=>s.replace(/\d+/g,'#').replace(/\s+/g,' ').trim().toLowerCase();
+async function pdfToText(file,onProg){
+  await loadPdfJs();
+  const pdf=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise,N=pdf.numPages,pages=[];
+  try{
+    for(let p=1;p<=N;p++){
+      if(pdfCancel)throw new Error('annullato');
+      const pg=await pdf.getPage(p),tc=await pg.getTextContent(),lines=[];
+      let line='',lastY=null,endX=0;
+      for(const it of tc.items){
+        if(typeof it.str!=='string')continue;
+        const x=it.transform[4],y=it.transform[5],h=it.height||8;
+        if(lastY!==null&&Math.abs(y-lastY)>h*0.5){lines.push(line);line='';endX=0}
+        if(line&&!/\s$/.test(line)&&!/^\s/.test(it.str)&&x-endX>h*0.15)line+=' ';
+        line+=it.str;lastY=y;endX=x+(it.width||0);
+        if(it.hasEOL){lines.push(line);line='';lastY=null;endX=0}
+      }
+      if(line)lines.push(line);
+      pages.push(lines.map(s=>s.replace(/\s+/g,' ').trim()).filter(Boolean));
+      pg.cleanup();
+      if(p%4===0||p===N){onProg(p,N);await new Promise(r=>setTimeout(r))}
+    }
+  }finally{pdf.destroy()}
+  if(N>=6){
+    const cnt={};
+    pages.forEach(l=>{if(l.length)new Set([norm(l[0]),norm(l[l.length-1])]).forEach(k=>{cnt[k]=(cnt[k]||0)+1})});
+    const bad=new Set(Object.keys(cnt).filter(k=>cnt[k]>=N*0.4&&k.length<90));
+    pages.forEach((l,i)=>{pages[i]=l.filter((s,j)=>!((j===0||j===l.length-1)&&bad.has(norm(s))))});
+  }
+  pages.forEach((l,i)=>{pages[i]=l.filter(s=>!/^[\s\-–—]*\d{1,4}[\s\-–—]*$/.test(s))});
+  let out='';const po=[];
+  for(const l of pages){
+    if(!l.length){po.push(out.length);continue}
+    const lens=l.map(s=>s.length).sort((a,b)=>a-b),med=lens[Math.floor(lens.length/2)]||0;
+    l.forEach((s,i)=>{
+      if(out&&!/\n$/.test(out)){
+        if(/[A-Za-zÀ-ÿ]-$/.test(out)&&/^[a-zà-ÿ]/.test(s))out=out.slice(0,-1);
+        else out+=' ';
+      }
+      if(i===0)po.push(out.length);
+      out+=s;
+      if(/[.!?…:»”"]$/.test(s)&&s.length<med*0.7&&i<l.length-1)out+='\n';
+    });
+  }
+  return {text:out.replace(/\n+$/,''),pages:N,po:po};
+}
+function cancelPdf(){pdfCancel=true}
+async function importPdf(file){
+  if(!file)return;
+  pause();pdfCancel=false;
+  $('pdfDrop').style.display='none';$('pdfProg').style.display='block';
+  $('pdfName').textContent=file.name;$('pdfBar').style.width='0%';$('pdfStat').textContent='Preparazione…';
+  const end=()=>{$('pdfDrop').style.display='';$('pdfProg').style.display='none'};
+  let res;
+  try{res=await pdfToText(file,(i,n)=>{$('pdfBar').style.width=Math.round(i/n*100)+'%';$('pdfStat').textContent='Pagina '+i+' di '+n})}
+  catch(e){
+    end();
+    if(e.message==='annullato')toast('Importazione annullata');
+    else if(e.message==='motore')ask({icon:'🧩',title:'Motore PDF non disponibile',msg:'Non riesco a caricare il lettore di PDF. Controlla di aver copiato la cartella lib/ nel repo oppure di essere online, poi riprova.',ok:'Ho capito',cancel:false});
+    else if(e.name==='PasswordException')toast('Il PDF è protetto da password','err');
+    else{console.error(e);toast('Impossibile leggere questo PDF: '+(e.message||e.name||'errore sconosciuto'),'err')}
+    return;
+  }
+  end();
+  if(res.text.length<50){
+    await ask({icon:'🖼️',title:'Nessun testo trovato',msg:'Questo PDF sembra una scansione (solo immagini) e non contiene testo selezionabile, quindi non posso leggerlo.',ok:'Ho capito',cancel:false});
+    return;
+  }
+  const title=$('titleInput').value.trim()||file.name.replace(/\.pdf$/i,'').replace(/_+/g,' ').trim()||'PDF importato';
+  resetReader();
+  if(await commitText(title,res.text,res.po,'pdf')){openReading();toast('PDF importato: '+res.pages+' pagine','ok')}
+}
+async function importFile(file){
+  if(!file)return;
+  if(/\.pdf$/i.test(file.name)||file.type==='application/pdf')return importPdf(file);
+  try{
+    const buf=await file.arrayBuffer();
+    let t=new TextDecoder('utf-8').decode(buf);
+    if(t.includes('\ufffd'))t=new TextDecoder('windows-1252').decode(buf);
+    t=t.replace(/\u0000/g,'').trim();
+    if(!t){toast('Il file è vuoto','err');return}
+    const title=$('titleInput').value.trim()||file.name.replace(/\.[^.]+$/,'');
+    pause();resetReader();
+    if(await commitText(title,t,null,'txt')){openReading();toast('File importato','ok')}
+  }catch(e){toast('Impossibile leggere il file','err')}
+}
+$('pdfFile').addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';importFile(f)});
+const dz=$('pdfDrop');
+['dragover','dragenter'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove('over')}));
+dz.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)importFile(f)});
 
 /* ---------- Voci e impostazioni ---------- */
 function loadVoices(){
@@ -1190,12 +1467,12 @@ function loadVoices(){
   const v=pickVoice();if(v)$('voiceSelect').value=v.name;
   syncUI();
 }
-function applyFont(){$('readerText').style.fontSize=S().font+'px';$('textInput').style.fontSize=S().font+'px'}
+function applyFont(){$('readerText').style.lineHeight=S().lh;$('readerText').style.fontSize=S().font+'px';$('textInput').style.fontSize=S().font+'px'}
 function syncUI(){
   const s=S();
   $('speedRange').value=s.rate;$('pitchRange').value=s.pitch;$('fontRange').value=s.font;$('wakeChk').checked=s.wake;
   $('speedValue').textContent=fmt(s.rate)+'×';$('pitchValue').textContent=fmt(s.pitch);
-  $('fontValue').textContent=s.font+'px';$('fontPreview').style.fontSize=s.font+'px';
+  $('fontValue').textContent=s.font+'px';$('lhSel').value=String(s.lh);$('fontPreview').style.fontSize=s.font+'px';
   $('speedLabel').textContent=fmt(s.rate)+'×';
   const n=s.voice||(pickVoice()||{}).name||'automatica';
   $('voiceLabel').textContent='Voce: '+(n.length>24?n.slice(0,22)+'…':n);
@@ -1208,6 +1485,7 @@ function saveSettings(){
   s.voice=$('voiceSelect').value||s.voice;
   persist();syncUI();
 }
+function onLhChange(v){S().lh=Number(v)||1.8;persist();syncUI()}
 function onFontChange(v){S().font=Number(v)||16;persist();syncUI()}
 $('voiceSelect').addEventListener('change',saveSettings);
 function tryVoice(){
@@ -1238,6 +1516,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme)
 /* ---------- Avvio ---------- */
 $('yearNow').textContent=new Date().getFullYear();
 applyTheme();syncUI();renderContinue();renderList();updateMeta();updTmr();
+migrate().then(()=>{renderContinue();renderList()});
 if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;loadVoices();setTimeout(loadVoices,800)}
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden)persist();

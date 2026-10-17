@@ -654,6 +654,16 @@ select{
 .hero .primary{margin-top:11px;padding:9px 16px;min-height:38px;font-size:14px}
 .textitem.playing strong{color:var(--primary)}
 .textitem .icon-only.on{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border-color:transparent}
+/* Lettura a schermo intero: titolo, pagina e barra di avanzamento restano sempre in vista, il testo scorre da solo
+   e i controlli restano in basso (niente più scorrimento della pagina sotto l'intestazione). */
+@media (min-height:560px){
+  body.fitread .app{padding-bottom:0}
+  #reader.fit.active{display:flex;flex-direction:column;height:var(--rdH,calc(100dvh - 200px))}
+  #reader.fit #readingView{display:flex!important;flex-direction:column;flex:1 1 auto;min-height:0}
+  #reader.fit .readerTop{flex:none;padding:12px 16px}
+  #reader.fit .readerText{flex:1 1 auto;min-height:120px;max-height:none}
+  #reader.fit .controls{flex:none;padding:12px 16px}
+}
 </style>
 </head>
 <body data-theme="blunotte">
@@ -885,7 +895,7 @@ select{
 <section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>La voce si ferma solo a fine frase: le frasi non vengono spezzate sulle virgole. Dopo una pausa la lettura riparte dall'inizio della frase corrente. Nell'archivio, il pulsante del testo in lettura diventa Pausa.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni, nella scheda "Voce", scegli voce, velocità e tono e puoi provarli; la scheda "Testo e colori" ha dimensione, interlinea e tema.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
 <section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.8</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.9</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
 <section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
 <section class="sheet" id="sh-bm" role="dialog" aria-modal="true" aria-label="🔖 Segnalibri"><div class="grab"></div><div class="sh-h"><b>🔖 Segnalibri</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><button class="primary" id="bmAdd" style="width:100%;justify-content:center;margin-bottom:14px">＋ Aggiungi segnalibro qui</button><div id="bmList"></div></div></section>
 <section class="sheet" id="sh-pg" role="dialog" aria-modal="true" aria-label="📖 Vai a pagina"><div class="grab"></div><div class="sh-h"><b>📖 Vai a pagina</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" id="pgInfo" style="margin-top:0"></p><div class="row" style="flex-wrap:nowrap"><input id="pgNum" type="number" inputmode="numeric" min="1" placeholder="Numero di pagina" style="flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text)"><button class="primary" id="pgGo">Vai</button></div></div></section>
@@ -895,8 +905,8 @@ select{
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
-/* AscoltaTesto v1.8 */
-const APP_VERSION='1.8';
+/* AscoltaTesto v1.9 */
+const APP_VERSION='1.9';
 const KEY='ascoltatesto_v2';
 const THEMES=[
 {id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
@@ -1034,6 +1044,17 @@ function install(){
   if(dp){dp.prompt();dp=null;return}
   ask({icon:'📲',title:'Installa AscoltaTesto',msg:'Apri il menu del browser e scegli "Installa app" oppure "Aggiungi a schermata Home".',ok:'Ho capito',cancel:false});
 }
+function fitReader(){
+  const el=$('reader'),nav=document.querySelector('.bottomnav');
+  const navH=nav&&getComputedStyle(nav).display!=='none'?nav.offsetHeight:0;
+  const top=el.getBoundingClientRect().top+window.scrollY;   /* posizione con la pagina in cima */
+  el.style.setProperty('--rdH',Math.max(300,Math.round(window.innerHeight-top-navH-12))+'px');
+}
+function setFit(on){
+  $('reader').classList.toggle('fit',on);document.body.classList.toggle('fitread',on);
+  if(on)fitReader();
+}
+addEventListener('resize',()=>{if(page==='reader'&&$('reader').classList.contains('fit'))fitReader()});
 function openSettings(){openSheet('set')}
 function setTab(t){
   $('tabVoice').style.display=t==='voice'?'':'none';$('tabText').style.display=t==='text'?'':'none';
@@ -1081,6 +1102,7 @@ function showPage(id){
   if(id==='texts')renderList();
   if(id==='home')renderContinue();
   page=id;window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='reader'&&$('reader').classList.contains('fit'))fitReader();
 }
 function goHome(){if(closeTop())return;pause();showPage('home')}
 history.pushState({p:1},'',location.href);
@@ -1095,7 +1117,7 @@ function updateMeta(){
   $('metaInfo').textContent=w+' parole · '+t.length+' caratteri · ~'+Math.ceil(w/180)+' min';
 }
 function resetReader(){
-  cur=null;sn=[];body='';spans=[];lastIdx=-1;
+  cur=null;sn=[];body='';spans=[];lastIdx=-1;setFit(false);
   $('editorView').style.display='block';$('readingView').style.display='none';
   $('titleInput').value='';$('textInput').value='';updateMeta();
   $('pdfDrop').style.display='';$('pdfProg').style.display='none';
@@ -1138,10 +1160,10 @@ async function openText(id){
 }
 function openReading(){
   $('editorView').style.display='none';$('readingView').style.display='block';
-  $('readingTitle').textContent=cur.title;renderReader();showPage('reader');
+  $('readingTitle').textContent=cur.title;renderReader();setFit(true);showPage('reader');
 }
 function backToEditor(){
-  pause();setMode('text');$('segBar').style.display='none';
+  pause();setMode('text');setFit(false);$('segBar').style.display='none';
   $('saveLbl').textContent='Salva modifiche';$('edTitle').textContent='Modifica testo';
   $('titleInput').value=cur?cur.title:'';$('textInput').value=body;updateMeta();
   $('editorView').style.display='block';$('readingView').style.display='none';showPage('reader')

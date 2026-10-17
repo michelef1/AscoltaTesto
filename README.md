@@ -5,7 +5,7 @@
 **Il tuo lettore vocale personale.**
 Incolla un testo o carica un PDF, scegli la voce e ascoltalo. L'app ricorda da sola dove sei arrivato.
 
-![Versione](https://img.shields.io/badge/versione-2.1-2563eb?style=flat-square)
+![Versione](https://img.shields.io/badge/versione-2.2-2563eb?style=flat-square)
 ![PWA](https://img.shields.io/badge/PWA-installabile-4f46e5?style=flat-square)
 ![Offline](https://img.shields.io/badge/funziona-offline-059669?style=flat-square)
 ![Nessun server](https://img.shields.io/badge/nessun-server-ea580c?style=flat-square)
@@ -57,7 +57,7 @@ AscoltaTesto è una **Progressive Web App** in un unico file: si apre dal browse
 - **6 temi di colore**: Blu Notte, Tramonto, Aurora, Foresta, Rosa, Mono.
 - **Chiaro / scuro** che segue il sistema, oppure scelto a mano dal menu ⋮.
 - Dimensione del testo e interlinea regolabili, con anteprima.
-- Schermata di lettura a tutta altezza con **tendine a scomparsa**: in alto restano pagina e avanzamento, in basso i comandi principali; il resto (titolo, Modifica, Vai a pagina, voce, timer, segnalibri, esporta) si apre con una freccia.
+- Schermata di lettura a tutta altezza con **tendine a scomparsa**: in alto restano pagina e avanzamento, in basso i comandi principali; il resto (titolo, Modifica, Vai a pagina, voce, timer, segnalibri, esporta) si apre con una freccia, e aprendo una tendina l'altra si chiude per lasciare spazio al testo.
 
 ### ⌨️ Comodità
 - Sul computer: **Spazio** per play e pausa, **← / →** per le frasi.
@@ -106,7 +106,7 @@ I percorsi sono tutti relativi (`./`), quindi l'app funziona con qualsiasi nome 
 
 ### Come aggiornare la versione
 
-A ogni modifica significativa cambia **insieme** queste tre cose, con lo schema 1.0 → 1.1 → … → 2.0 → 2.1:
+A ogni modifica significativa cambia **insieme** queste tre cose, con lo schema 1.0 → 1.1 → … → 2.0 → 2.1 → 2.2:
 
 | Dove | Cosa |
 |---|---|
@@ -150,6 +150,7 @@ Tutto avviene sul tuo dispositivo: testi, PDF, posizioni e segnalibri non vengon
 
 | Versione | Novità principali |
 |---|---|
+| **2.2** | Tendine più compatte: Modifica e Vai a pagina affiancati, una sola tendina aperta alla volta, comandi in basso sempre completi. |
 | **2.1** | Evidenziazione più pulita: angoli arrotondati, niente alone, stesso giallo in tema chiaro e scuro. |
 | **2.0** | Lettura con tendine a scomparsa in alto e in basso, più spazio al testo. |
 | **1.9** | Schermata di lettura a tutta altezza: pagina e avanzamento sempre visibili. |

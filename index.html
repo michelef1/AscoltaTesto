@@ -682,6 +682,18 @@ select{
 #reader.fit .controls{padding:10px 14px}
 #reader.fit .bigplay{width:54px;height:54px}
 #reader.fit .ctlmain .icon-only{width:42px;height:42px}
+/* v2.2: tendine più compatte */
+.drawer.open{max-height:200px}
+.drawerIn{padding-top:8px}
+#topDrawer .row{flex-wrap:nowrap;margin:8px 0 2px}
+#topDrawer .row>button{flex:1;min-width:0;justify-content:center;padding:10px 8px;font-size:14px;white-space:nowrap}
+#reader.fit .readerText{min-height:90px}
+#reader.fit .controls{padding:8px 14px}
+#reader.fit .bigplay{width:50px;height:50px}
+#reader.fit .ctlmain .icon-only{width:40px;height:40px}
+#reader.fit .ctlrow .dtoggle,#reader.fit .spd{width:42px;height:42px}
+#reader.fit #seek{margin-top:6px!important}
+#reader.fit .rtbar .dtoggle{width:34px;height:34px}
 </style>
 </head>
 <body data-theme="blunotte">
@@ -919,11 +931,11 @@ select{
         <div class="themes" id="themesGrid"></div>
       </div>
     </div></section>
-<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>La voce si ferma solo a fine frase: le frasi non vengono spezzate sulle virgole. Dopo una pausa la lettura riparte dall'inizio della frase corrente. Nell'archivio, il pulsante del testo in lettura diventa Pausa.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni, nella scheda "Voce", scegli voce, velocità e tono e puoi provarli; la scheda "Testo e colori" ha dimensione, interlinea e tema.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📖 Schermata di lettura</h3><p>In alto restano sempre visibili la pagina e la barra di avanzamento. Con le frecce a destra apri e chiudi i comandi: in alto titolo, Modifica e Vai a pagina, in basso voce, timer, segnalibri ed esporta TXT. La velocità è sempre a portata di dito.</p>
+<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>La voce si ferma solo a fine frase: le frasi non vengono spezzate sulle virgole. Dopo una pausa la lettura riparte dall'inizio della frase corrente. Nell'archivio, il pulsante del testo in lettura diventa Pausa.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni, nella scheda "Voce", scegli voce, velocità e tono e puoi provarli; la scheda "Testo e colori" ha dimensione, interlinea e tema.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📖 Schermata di lettura</h3><p>In alto restano sempre visibili la pagina e la barra di avanzamento. Con le frecce a destra apri e chiudi i comandi: in alto titolo, Modifica e Vai a pagina, in basso voce, timer, segnalibri ed esporta TXT. Aprendone una, l'altra si chiude per lasciare spazio al testo. La velocità è sempre a portata di dito.</p>
 <h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
 <section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">2.1</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">2.2</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
 <section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
 <section class="sheet" id="sh-bm" role="dialog" aria-modal="true" aria-label="🔖 Segnalibri"><div class="grab"></div><div class="sh-h"><b>🔖 Segnalibri</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><button class="primary" id="bmAdd" style="width:100%;justify-content:center;margin-bottom:14px">＋ Aggiungi segnalibro qui</button><div id="bmList"></div></div></section>
 <section class="sheet" id="sh-pg" role="dialog" aria-modal="true" aria-label="📖 Vai a pagina"><div class="grab"></div><div class="sh-h"><b>📖 Vai a pagina</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" id="pgInfo" style="margin-top:0"></p><div class="row" style="flex-wrap:nowrap"><input id="pgNum" type="number" inputmode="numeric" min="1" placeholder="Numero di pagina" style="flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text)"><button class="primary" id="pgGo">Vai</button></div></div></section>
@@ -933,8 +945,8 @@ select{
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
-/* AscoltaTesto v2.1 */
-const APP_VERSION='2.1';
+/* AscoltaTesto v2.2 */
+const APP_VERSION='2.2';
 const KEY='ascoltatesto_v2';
 const THEMES=[
 {id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
@@ -1088,8 +1100,12 @@ function setDrawer(w,open,save){
   $(d).classList.toggle('open',open);$(b).setAttribute('aria-expanded',String(open));
   if(save){S()[w==='top'?'tOpen':'bOpen']=open;persist()}
 }
-function toggleDrawer(w){setDrawer(w,!$(w==='top'?'topDrawer':'botDrawer').classList.contains('open'),true)}
-function applyDrawers(){setDrawer('top',!!S().tOpen,false);setDrawer('bot',!!S().bOpen,false)}
+function toggleDrawer(w){
+  const open=!$(w==='top'?'topDrawer':'botDrawer').classList.contains('open');
+  setDrawer(w,open,true);
+  if(open)setDrawer(w==='top'?'bot':'top',false,true);   /* una sola tendina aperta alla volta */
+}
+function applyDrawers(){const t=!!S().tOpen;setDrawer('top',t,false);setDrawer('bot',!!S().bOpen&&!t,false)}
 function openSettings(){openSheet('set')}
 function setTab(t){
   $('tabVoice').style.display=t==='voice'?'':'none';$('tabText').style.display=t==='text'?'':'none';

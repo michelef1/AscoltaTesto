@@ -846,38 +846,46 @@ select{
 </div>
 
 <div class="ov" id="ov"></div>
-<section class="sheet" id="sh-set" role="dialog" aria-modal="true" aria-label="Impostazioni"><div class="grab"></div><div class="sh-h"><b>Impostazioni</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b ">
-      
+<section class="sheet" id="sh-set" role="dialog" aria-modal="true" aria-label="Impostazioni"><div class="grab"></div><div class="sh-h"><b>Impostazioni</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b">
+      <div class="seg" id="setSeg" role="tablist">
+        <button id="stVoice" class="on" role="tab" onclick="setTab('voice')">🎙️ Voce</button>
+        <button id="stText" role="tab" onclick="setTab('text')">🔤 Testo e colori</button>
+      </div>
 
-      <div class="settingsGrid">
-        <div class="setting">
-          <label>Voce</label>
-          <select id="voiceSelect"></select>
+      <div id="tabVoice">
+        <div class="settingsGrid">
+          <div class="setting">
+            <label>Voce</label>
+            <select id="voiceSelect"></select>
+          </div>
+          <div class="setting">
+            <label>Velocità <span id="speedValue">1,0×</span></label>
+            <input id="speedRange" type="range" min=".5" max="2" step=".1" value="1" oninput="speedValue.textContent=Number(this.value).toFixed(1).replace('.',',')+'×';saveSettings()">
+          </div>
+          <div class="setting">
+            <label>Tono <span id="pitchValue">1,0</span></label>
+            <input id="pitchRange" type="range" min=".5" max="1.8" step=".1" value="1" oninput="pitchValue.textContent=Number(this.value).toFixed(1).replace('.',',');saveSettings()">
+          </div>
         </div>
-        <div class="setting">
-          <label>Velocità <span id="speedValue">1,0×</span></label>
-          <input id="speedRange" type="range" min=".5" max="2" step=".1" value="1" oninput="speedValue.textContent=Number(this.value).toFixed(1).replace('.',',')+'×';saveSettings()">
-        </div>
-        <div class="setting">
-          <label>Tono <span id="pitchValue">1,0</span></label>
-          <input id="pitchRange" type="range" min=".5" max="1.8" step=".1" value="1" oninput="pitchValue.textContent=Number(this.value).toFixed(1).replace('.',',');saveSettings()">
-        </div>
+        <div class="setting" style="margin-top:14px"><button class="secondary" onclick="tryVoice()">▶ Prova voce</button></div>
+        <div class="setting" style="margin-top:16px"><label><input type="checkbox" id="wakeChk" onchange="saveSettings()"> Tieni lo schermo acceso durante l'ascolto</label></div>
+      </div>
+
+      <div id="tabText" style="display:none">
         <div class="setting">
           <label>Dimensione testo <span id="fontValue">16px</span></label>
           <input id="fontRange" type="range" min="14" max="36" step="1" value="16" oninput="onFontChange(this.value)">
           <div class="font-preview"><p id="fontPreview">Anteprima testo di lettura</p></div>
         </div>
+        <div class="setting" style="margin-top:12px"><label for="lhSel">Interlinea</label><select id="lhSel" onchange="onLhChange(this.value)"><option value="1.55">Stretta</option><option value="1.8">Standard</option><option value="2.1">Ampia</option></select></div>
+        <h3 style="margin-top:22px;margin-bottom:10px">Colori</h3>
+        <div class="themes" id="themesGrid"></div>
       </div>
-
-      <div class="setting" style="margin-top:12px"><label><input type="checkbox" id="wakeChk" onchange="saveSettings()"> Tieni lo schermo acceso durante l'ascolto</label><button class="secondary" style="margin-top:8px" onclick="tryVoice()">Prova voce</button></div>
-<div class="setting" style="margin-top:12px"><label for="lhSel">Interlinea</label><select id="lhSel" onchange="onLhChange(this.value)"><option value="1.55">Stretta</option><option value="1.8">Standard</option><option value="2.1">Ampia</option></select></div>
-<h3 style="margin-top:22px;margin-bottom:10px">Tema</h3>
-      <div class="themes" id="themesGrid"></div>
     </div></section>
-<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>La voce si ferma solo a fine frase: le frasi non vengono spezzate sulle virgole. Dopo una pausa la lettura riparte dall'inizio della frase corrente. Nell'archivio, il pulsante del testo in lettura diventa Pausa.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni puoi provare ogni voce.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
+<section class="sheet" id="sh-guida" role="dialog" aria-modal="true" aria-label="Guida"><div class="grab"></div><div class="sh-h"><b>Guida</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b guide"><h3 style="margin-top:4px">📌 Segnalibro automatico</h3><p>La frase evidenziata è il punto in cui sei. Si salva da sola: quando riapri un testo riparti da lì. Tocca una frase per ascoltare da quel punto.</p><h3>⏯️ Pausa e ripresa</h3><p>La voce si ferma solo a fine frase: le frasi non vengono spezzate sulle virgole. Dopo una pausa la lettura riparte dall'inizio della frase corrente. Nell'archivio, il pulsante del testo in lettura diventa Pausa.</p><h3>🎙️ Voci</h3><p>Le voci dipendono dal dispositivo e dal browser. Se non trovi una voce italiana, controlla le impostazioni di sintesi vocale del telefono. In Impostazioni, nella scheda "Voce", scegli voce, velocità e tono e puoi provarli; la scheda "Testo e colori" ha dimensione, interlinea e tema.</p><h3>⏱️ Timer e schermo</h3><p>Il timer ferma la lettura dopo il tempo scelto. Con "Tieni lo schermo acceso" la lettura non si interrompe quando il telefono si blocca da solo.</p><h3>🔖 Segnalibri e pagine</h3><p>Oltre al segnalibro automatico puoi salvare quanti segnalibri vuoi con il pulsante "Segnalibri" nella schermata di lettura. Il numero di pagina è sempre visibile sopra il testo e nel testo compaiono i divisori di pagina. Con "Vai a pagina" salti dove vuoi. Nei testi che non sono PDF le pagine sono stimate (circa 2000 caratteri ciascuna).</p><h3>📄 Importa PDF e TXT</h3><p>Nell'editor scegli la scheda "Da file" e carica un PDF o un TXT: il testo viene estratto sul telefono, anche per libri di centinaia di pagine, e salvato nell'archivio. Intestazioni e numeri di pagina vengono tolti. Funziona solo con PDF che contengono testo vero, non con scansioni fatte di sole immagini.</p><h3>✏️ Rinominare un testo</h3><p>Tocca la matita accanto al titolo, nella lettura o nell'archivio: il nuovo titolo si salva subito. In archivio i PDF sono separati dai testi incollati e dai TXT.</p><h3>🗂️ Archivio e backup</h3><p>I testi restano solo su questo dispositivo. Esportali in JSON come backup e reimportali quando vuoi, scegliendo se unirli o sostituirli.</p><h3>🎨 Temi</h3><p>Scegli il tema in Impostazioni. Dal menu ⋮ passi a Tema Chiaro o Tema Scuro; senza una scelta segue il sistema.</p><h3>↩️ Tasto Indietro</h3><p>Su Android il tasto Indietro chiude prima menu e pannelli, poi ti riporta alla Home.</p></div></section>
 <section class="sheet" id="sh-info" role="dialog" aria-modal="true" aria-label="Info e crediti"><div class="grab"></div><div class="sh-h"><b>Info e crediti</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><div class="card" style="text-align:center"><div class="logo" style="margin:0 auto 12px;width:64px;height:64px;border-radius:20px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.7</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
+      </div><h2 style="margin:0">AscoltaTesto</h2><p class="muted" style="margin:6px 0 14px">Versione <span id="app-version">1.8</span></p><p>Il tuo lettore vocale personale: incolla un testo, scegli la voce e ascoltalo, con il segnalibro sempre al punto giusto. Funziona anche senza connessione.</p><p class="muted" style="margin-bottom:0">Creata da Miki con Claude<br>© <span id="yearNow"></span> AscoltaTesto</p></div></div></section>
 <section class="sheet" id="sh-tmr" role="dialog" aria-modal="true" aria-label="⏱️ Timer di spegnimento"><div class="grab"></div><div class="sh-h"><b>⏱️ Timer di spegnimento</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" style="margin-top:0">La lettura va in pausa quando il tempo scade.</p><div id="topts"></div></div></section>
 <section class="sheet" id="sh-bm" role="dialog" aria-modal="true" aria-label="🔖 Segnalibri"><div class="grab"></div><div class="sh-h"><b>🔖 Segnalibri</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><button class="primary" id="bmAdd" style="width:100%;justify-content:center;margin-bottom:14px">＋ Aggiungi segnalibro qui</button><div id="bmList"></div></div></section>
 <section class="sheet" id="sh-pg" role="dialog" aria-modal="true" aria-label="📖 Vai a pagina"><div class="grab"></div><div class="sh-h"><b>📖 Vai a pagina</b><button class="x" aria-label="Chiudi">✕</button></div><div class="sh-b "><p class="muted" id="pgInfo" style="margin-top:0"></p><div class="row" style="flex-wrap:nowrap"><input id="pgNum" type="number" inputmode="numeric" min="1" placeholder="Numero di pagina" style="flex:1;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg2);height:46px;color:var(--text)"><button class="primary" id="pgGo">Vai</button></div></div></section>
@@ -887,8 +895,8 @@ select{
 <input type="file" id="importFile" accept="application/json" style="display:none">
 
 <script>
-/* AscoltaTesto v1.7 */
-const APP_VERSION='1.7';
+/* AscoltaTesto v1.8 */
+const APP_VERSION='1.8';
 const KEY='ascoltatesto_v2';
 const THEMES=[
 {id:'blunotte',label:'Blu Notte',sub:'Default',colors:['#172554','#2563eb','#4f46e5']},
@@ -1027,6 +1035,10 @@ function install(){
   ask({icon:'📲',title:'Installa AscoltaTesto',msg:'Apri il menu del browser e scegli "Installa app" oppure "Aggiungi a schermata Home".',ok:'Ho capito',cancel:false});
 }
 function openSettings(){openSheet('set')}
+function setTab(t){
+  $('tabVoice').style.display=t==='voice'?'':'none';$('tabText').style.display=t==='text'?'':'none';
+  $('stVoice').classList.toggle('on',t==='voice');$('stText').classList.toggle('on',t==='text');
+}
 function openSheet(n){
   closeMenu();closeSheet();
   curSheet=$('sh-'+n);if(!curSheet)return;
@@ -1304,19 +1316,44 @@ function mark(center){
   cur.pos=idx;cur.updated=Date.now();data.lastId=cur.id;persistSoon();
 }
 function pickVoice(){return voices.find(v=>v.name===S().voice)||voices.find(v=>/^it/i.test(v.lang))||voices[0]||null}
+/* Le frasi vengono messe in coda con un po' di anticipo (quella che parla + le prossime 2):
+   quando una finisce, la voce passa alla successiva senza aspettare il programma, quindi la pausa tra le frasi è minima. */
+const AHEAD=2;
+let qEnd=-1;
+function mkUtt(i,my){
+  const u=new SpeechSynthesisUtterance(sn[i].t),v=pickVoice();
+  if(v){u.voice=v;u.lang=v.lang}else u.lang='it-IT';
+  u.rate=S().rate;u.pitch=S().pitch;
+  const drop=()=>{window._uq=(window._uq||[]).filter(x=>x!==u)};
+  u.onstart=()=>advance(i,my);
+  u.onend=()=>{
+    drop();
+    if(my!==tok||!playing)return;
+    if(i>=sn.length-1){done=true;idx=sn.length-1;pause();mark();toast('Fine del testo','ok')}
+    else advance(i+1,my);
+  };
+  u.onerror=e=>{
+    drop();
+    if(my===tok&&e.error!=='interrupted'&&e.error!=='canceled'){pause();toast('Errore della voce: '+(e.error||e.message||'sconosciuto'),'err')}
+  };
+  (window._uq=window._uq||[]).push(u);   /* tiene un riferimento: evita che il browser la elimini prima della fine */
+  return u;
+}
+function advance(j,my){
+  if(my!==tok||!playing)return;
+  if(idx!==j){idx=j;mark()}
+  fillQ(my);
+}
+function fillQ(my){
+  while(qEnd<idx+AHEAD&&qEnd+1<sn.length){qEnd++;speechSynthesis.speak(mkUtt(qEnd,my))}
+}
 function speak(i){
   if(i>=sn.length){done=true;idx=sn.length-1;pause();mark();toast('Fine del testo','ok');return}
   idx=i;mark();
-  const my=++tok;speechSynthesis.cancel();
-  setTimeout(()=>{
-    if(my!==tok)return;
-    const u=new SpeechSynthesisUtterance(sn[i].t),v=pickVoice();
-    if(v){u.voice=v;u.lang=v.lang}else u.lang='it-IT';
-    u.rate=S().rate;u.pitch=S().pitch;
-    u.onend=()=>{if(my===tok&&playing)speak(i+1)};
-    u.onerror=e=>{if(my===tok&&e.error!=='interrupted'&&e.error!=='canceled'){pause();toast('Errore della voce: '+(e.error||e.message||'sconosciuto'),'err')}};
-    window._u=u;speechSynthesis.speak(u);
-  },60);
+  const my=++tok;
+  try{speechSynthesis.cancel()}catch(e){}
+  window._uq=[];
+  setTimeout(()=>{if(my!==tok)return;qEnd=i-1;fillQ(my)},60);
 }
 function setPlay(p){
   $('playIcon').style.display=p?'none':'block';

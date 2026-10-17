@@ -1,4 +1,4 @@
-const CACHE = 'ascoltatesto-v1.7';
+const CACHE = 'ascoltatesto-v1.8';
 const ASSETS = [
   './',
   './index.html',
